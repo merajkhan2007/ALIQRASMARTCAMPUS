@@ -50,7 +50,7 @@ export function CTARibbon() {
                                 <Lantern className="w-6 h-6 text-brand-gold/30" />
                             </div>
                             <h2 className="text-lg md:text-xl font-extrabold text-white leading-snug">
-                                Support Our Mission — <span className="text-brand-gold">Make a Donation</span>
+                                Earn Sadaqah Jariyah — <span className="text-brand-gold">Make a Donation</span>
                             </h2>
                             <p className="text-sm md:text-base text-brand-gold/80 font-bold leading-relaxed mt-1" style={{ fontFamily: 'var(--font-urdu)' }}>
                                 القرآن و دینی تعلیم کی خدمت میں حصہ دیڬے
