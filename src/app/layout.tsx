@@ -21,6 +21,9 @@ const notoNastaliqUrdu = Noto_Nastaliq_Urdu({
 export const metadata: Metadata = {
   title: "Al-Iqra Modern Madrasa",
   description: "Official portal for Al-Iqra Modern Madrasa",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 import { TopBar } from "@/components/layout/TopBar";
