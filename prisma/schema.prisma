@@ -1,0 +1,334 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String      @id @default(uuid())
+  email          String      @unique
+  password       String
+  role           Role
+  name           String
+  phone          String?
+  avatar         String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  baseSalary     Float?
+  accountant     Accountant?
+  notices        Notice[]
+  blogs          Blog[]
+  parentProfile  Parent?
+  studentProfile Student?
+  teacherProfile Teacher?
+  salaries       StaffSalary[]
+  donations      Donation[]
+}
+
+model Accountant {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  joiningDate DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Student {
+  id              String           @id @default(uuid())
+  userId          String           @unique
+  admissionNo     String           @unique
+  rollNo          String?
+  dob             DateTime
+  gender          String
+  bloodGroup      String?
+  address         String
+  parentId        String?
+  classId         String?
+  attendances     Attendance[]
+  bookIssues      BookIssue[]
+  fees            Fee[]
+  islamicProgress IslamicProgress?
+  results         Result[]
+  class           Class?           @relation(fields: [classId], references: [id])
+  parent          Parent?          @relation(fields: [parentId], references: [id])
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Teacher {
+  id            String    @id @default(uuid())
+  userId        String    @unique
+  qualification String?
+  experience    Int       @default(0)
+  joiningDate   DateTime  @default(now())
+  salary        Float?
+  classes       Class[]   @relation("ClassTeacher")
+  subjects      Subject[]
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Parent {
+  id         String    @id @default(uuid())
+  userId     String    @unique
+  occupation String?
+  address    String?
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  students   Student[]
+}
+
+model Class {
+  id             String    @id @default(uuid())
+  name           String
+  section        String?
+  capacity       Int       @default(30)
+  classTeacherId String?
+  classTeacher   Teacher?  @relation("ClassTeacher", fields: [classTeacherId], references: [id])
+  notices        Notice[]
+  students       Student[]
+  subjects       Subject[]
+}
+
+model Subject {
+  id        String   @id @default(uuid())
+  name      String
+  code      String   @unique
+  classId   String
+  teacherId String?
+  exams     Exam[]
+  class     Class    @relation(fields: [classId], references: [id])
+  teacher   Teacher? @relation(fields: [teacherId], references: [id])
+}
+
+model Attendance {
+  id        String   @id @default(uuid())
+  date      DateTime
+  status    String
+  remarks   String?
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, date])
+}
+
+model Exam {
+  id        String   @id @default(uuid())
+  title     String
+  date      DateTime
+  maxMarks  Float
+  subjectId String
+  subject   Subject  @relation(fields: [subjectId], references: [id])
+  results   Result[]
+}
+
+model Result {
+  id            String  @id @default(uuid())
+  obtainedMarks Float
+  grade         String?
+  remarks       String?
+  examId        String
+  studentId     String
+  exam          Exam    @relation(fields: [examId], references: [id], onDelete: Cascade)
+  student       Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, studentId])
+}
+
+model Fee {
+  id        String    @id @default(uuid())
+  amount    Float
+  dueDate   DateTime
+  status    String
+  title     String
+  studentId String
+  student   Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  payments  Payment[]
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  amount        Float
+  date          DateTime @default(now())
+  method        String
+  transactionId String?
+  feeId         String
+  fee           Fee      @relation(fields: [feeId], references: [id], onDelete: Cascade)
+}
+
+model Notice {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  date        DateTime @default(now())
+  targetRoles String?
+  classId     String?
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  class       Class?   @relation(fields: [classId], references: [id])
+}
+
+model LibraryBook {
+  id              String      @id @default(uuid())
+  title           String
+  author          String
+  isbn            String?     @unique
+  totalCopies     Int
+  availableCopies Int
+  issues          BookIssue[]
+}
+
+model BookIssue {
+  id         String      @id @default(uuid())
+  issueDate  DateTime    @default(now())
+  dueDate    DateTime
+  returnDate DateTime?
+  status     String
+  bookId     String
+  studentId  String
+  book       LibraryBook @relation(fields: [bookId], references: [id])
+  student    Student     @relation(fields: [studentId], references: [id])
+}
+
+model IslamicProgress {
+  id            String   @id @default(uuid())
+  surah         String?
+  juz           Int?
+  tajweedGrade  String?
+  dailyHadith   Boolean  @default(false)
+  ramzanFasting Int?
+  lastUpdated   DateTime @default(now())
+  studentId     String   @unique
+  student       Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+}
+
+model Admission {
+  id                     String   @id @default(uuid())
+  admissionNumber        String   @unique
+  status                 String   @default("PENDING")
+  appliedAt              DateTime @default(now())
+  fullName               String
+  arabicName             String?
+  gender                 String
+  dob                    DateTime
+  placeOfBirth           String?
+  nationality            String?
+  aadhaarNumber          String?
+  bloodGroup             String?
+  religion               String   @default("Islam")
+  category               String?
+  studentPhoto           String?
+  courseApplyingFor      String?
+  hifzStatus             String?
+  totalParasMemorized    Int?
+  surahsMemorized        String?
+  tajweedLevel           String?
+  previousMadrasa        String?
+  qariName               String?
+  islamicStudiesLevel    String?
+  previousSchoolName     String?
+  boardName              String?
+  lastClassPassed        String?
+  percentageOrGrade      String?
+  transferCertificate    String?
+  previousMarksheet      String?
+  mediumOfStudy          String?
+  fatherName             String
+  fatherOccupation       String?
+  fatherMobile           String
+  fatherEmail            String?
+  fatherAnnualIncome     String?
+  motherName             String?
+  motherMobile           String?
+  guardianName           String?
+  guardianRelationship   String?
+  guardianMobile         String?
+  fullAddress            String
+  city                   String?
+  district               String?
+  state                  String?
+  pincode                String?
+  country                String?
+  medicalCondition       String?
+  allergies              String?
+  disability             String?
+  regularMedication      String?
+  emergencyContactName   String?
+  emergencyContactNum    String?
+  hostelRequired         Boolean  @default(false)
+  transportRequired      Boolean  @default(false)
+  pickupLocation         String?
+  localGuardianForHostel String?
+  birthCertificate       String?
+  aadhaarCard            String?
+  guardianIdProof        String?
+  incomeCertificate      String?
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Blog {
+  id        String   @id @default(uuid())
+  title     String
+  slug      String   @unique
+  excerpt   String
+  content   String
+  image     String?
+  published Boolean  @default(false)
+  language  String   @default("en")
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  TEACHER
+  STUDENT
+  PARENT
+  ACCOUNTANT
+  COOK
+  KHADIM
+  HAFIZ
+}
+
+model StaffSalary {
+  id            String    @id @default(uuid())
+  amount        Float
+  month         String    // E.g., "May 2026"
+  paymentDate   DateTime?
+  status        String    @default("PENDING") // PENDING, PAID
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Donation {
+  id           String   @id @default(uuid())
+  donorName    String
+  donorType    String   @default("INDIVIDUAL") // INDIVIDUAL, ORGANIZATION
+  amount       Float
+  date         DateTime @default(now())
+  method       String   @default("CASH") // CASH, CHEQUE, BANK_TRANSFER, ONLINE
+  phone        String?
+  email        String?
+  address      String?
+  message      String?
+  receiptNo    String   @unique
+  recordedById String
+  recordedBy   User     @relation(fields: [recordedById], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+

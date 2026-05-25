@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prisma
+/src/generated/prisma
+
+# logs
+*.log
+
+# tokens / browser data
+/tokens/
+
+# scratch / test files
+/scratch.ts
+/test-student-db.ts
+/update_admin_email.ts
