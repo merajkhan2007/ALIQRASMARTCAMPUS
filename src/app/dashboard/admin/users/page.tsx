@@ -10,6 +10,7 @@ import { AddStaffModal } from "@/components/admin/AddStaffModal";
 import { AssignHafizModal } from "@/components/admin/AssignHafizModal";
 import { EditUserModal } from "@/components/admin/EditUserModal";
 import { DeleteUserButton } from "@/components/admin/DeleteUserButton";
+import { ChangePasswordModal } from "@/components/admin/ChangePasswordModal";
 
 import { Role } from "@prisma/client";
 
@@ -202,6 +203,7 @@ export default async function AdminUsersPage({
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex justify-end gap-2 opacity-0 lg:opacity-100 group-hover:opacity-100 transition-opacity">
                                             <EditUserModal user={user} />
+                                            <ChangePasswordModal userId={user.id} userName={user.name} />
                                             <DeleteUserButton userId={user.id} disabled={user.role === "SUPER_ADMIN" || user.email === "admin@aliqramodernmadrasa.com"} />
                                         </div>
                                     </td>

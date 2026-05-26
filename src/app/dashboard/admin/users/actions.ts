@@ -203,6 +203,48 @@ export async function deleteUser(userId: string) {
   }
 }
 
+const changePasswordSchema = z.object({
+  userId: z.string().min(1, "User ID is required"),
+  newPassword: z.string().min(6, "New password must be at least 6 characters"),
+});
+
+export async function changeUserPassword(prevState: unknown, formData: FormData) {
+  try {
+    const data = Object.fromEntries(formData.entries());
+    const result = changePasswordSchema.safeParse(data);
+
+    if (!result.success) {
+      return {
+        error: "Validation failed: " + result.error.issues[0].message,
+      };
+    }
+
+    const { userId, newPassword } = result.data;
+
+    // Prevent changing root super admin password via this route
+    const targetUser = await db.user.findUnique({ where: { id: userId } });
+    if (!targetUser) {
+      return { error: "User not found." };
+    }
+    if (targetUser.email === "admin@aliqramodernmadrasa.com") {
+      return { error: "Cannot change the root administrator's password from here." };
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await db.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword },
+    });
+
+    revalidatePath("/dashboard/admin/users");
+
+    return { success: true };
+  } catch (error: unknown) {
+    console.error("Change Password Error:", error);
+    return { error: "An unexpected error occurred while changing the password." };
+  }
+}
+
 const addStaffSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
