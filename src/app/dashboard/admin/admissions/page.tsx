@@ -36,24 +36,24 @@ export default async function AdminAdmissionsPage({
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Admission Applications</h1>
-                    <p className="text-sm text-gray-500 mt-1">Review, approve, or reject student applications across all 8 steps.</p>
+                    <h1 className="text-2xl font-bold text-gray-900">داخلہ کی درخواستیں / Admission Applications</h1>
+                    <p className="text-sm text-gray-500 mt-1">طلبہ کی درخواستوں کا جائزہ لیں، منظور کریں، یا مسترد کریں۔ / Review, approve, or reject student applications across all 8 steps.</p>
                 </div>
 
                 <div className="flex items-center gap-3">
                     <div className="bg-white border rounded-md px-3 py-1.5 text-sm flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                        <span className="font-medium">{pendingCount} Pending</span>
+                        <span className="font-medium">{pendingCount} زیر التواء / Pending</span>
                     </div>
                 </div>
             </div>
 
             {/* Quick Filters */}
             <div className="flex flex-wrap gap-2 text-sm">
-                <Link href="/dashboard/admin/admissions" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'ALL' && courseFilter === 'ALL' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>All</Link>
-                <Link href="/dashboard/admin/admissions?status=PENDING" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'PENDING' ? 'bg-amber-50 border-amber-200 text-amber-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>Pending Review</Link>
-                <Link href="/dashboard/admin/admissions?status=APPROVED" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'APPROVED' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>Approved</Link>
-                <Link href="/dashboard/admin/admissions?status=REJECTED" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'REJECTED' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>Rejected</Link>
+                <Link href="/dashboard/admin/admissions" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'ALL' && courseFilter === 'ALL' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>سب / All</Link>
+                <Link href="/dashboard/admin/admissions?status=PENDING" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'PENDING' ? 'bg-amber-50 border-amber-200 text-amber-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>زیر التواء / Pending Review</Link>
+                <Link href="/dashboard/admin/admissions?status=APPROVED" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'APPROVED' ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>منظور شدہ / Approved</Link>
+                <Link href="/dashboard/admin/admissions?status=REJECTED" className={`px-4 py-2 font-medium rounded-lg border transition-colors ${statusFilter === 'REJECTED' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-white text-gray-600 hover:bg-gray-50'}`}>مسترد شدہ / Rejected</Link>
             </div>
 
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -61,19 +61,19 @@ export default async function AdminAdmissionsPage({
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs text-gray-500 uppercase bg-gray-50 border-b">
                             <tr>
-                                <th className="px-6 py-4 font-medium">Applicant</th>
-                                <th className="px-6 py-4 font-medium">Applied For</th>
-                                <th className="px-6 py-4 font-medium">Contact</th>
-                                <th className="px-6 py-4 font-medium">Date</th>
-                                <th className="px-6 py-4 font-medium">Status</th>
-                                <th className="px-6 py-4 font-medium text-right">Actions</th>
+                                <th className="px-6 py-4 font-medium">درخواست گزار / Applicant</th>
+                                <th className="px-6 py-4 font-medium">کے لیے درخواست / Applied For</th>
+                                <th className="px-6 py-4 font-medium">رابطہ / Contact</th>
+                                <th className="px-6 py-4 font-medium">تاریخ / Date</th>
+                                <th className="px-6 py-4 font-medium">حیثیت / Status</th>
+                                <th className="px-6 py-4 font-medium text-right">کارروائی / Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {admissions.length === 0 ? (
                                 <tr>
                                     <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
-                                        No admission applications found.
+                                        کوئی داخلہ درخواست نہیں ملی۔ / No admission applications found.
                                     </td>
                                 </tr>
                             ) : admissions.map((app) => (
@@ -119,7 +119,7 @@ export default async function AdminAdmissionsPage({
                                             app.status === 'REJECTED' ? 'bg-red-50 text-red-700 border-red-200' :
                                                 'bg-amber-50 text-amber-700 border-amber-200'
                                             }`}>
-                                            {app.status}
+                                            {app.status === 'PENDING' ? 'زیر التواء / PENDING' : app.status === 'APPROVED' ? 'منظور شدہ / APPROVED' : 'مسترد شدہ / REJECTED'}
                                         </span>
                                     </td>
 
