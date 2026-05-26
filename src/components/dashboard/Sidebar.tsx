@@ -54,15 +54,21 @@ const roleNavGroups: Record<string, { title: string; href: string; icon: React.R
     ],
     HAFIZ: [
         { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "Students", href: "/dashboard/admin/students", icon: <GraduationCap className="w-5 h-5" />, feature: "students" },
+        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <UserCheck className="w-5 h-5" />, feature: "attendance" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
+        { title: "Fees", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
     ],
     COOK: [
         { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
     ],
     KHADIM: [
         { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
     ]
 };
 

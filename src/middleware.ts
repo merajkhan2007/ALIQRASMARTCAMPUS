@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
-import { canAccessRoute, FEATURE_ROUTE_MAP, type FeatureKey } from "@/lib/permissions";
+import { canAccessRoute, isSuperAdmin, FEATURE_ROUTE_MAP, type FeatureKey } from "@/lib/permissions";
+import { db } from "@/lib/db";
 
 const JWT_SECRET = new TextEncoder().encode(
     process.env.JWT_SECRET || "fallback-secret-for-dev-only"
@@ -16,8 +17,6 @@ const rolePaths: Record<string, string[]> = {
     "/dashboard/accountant": ["SUPER_ADMIN", "ADMIN", "ACCOUNTANT", "HAFIZ", "COOK", "KHADIM"],
 };
 
-// We dynamically import the DB to avoid bundling issues in edge runtime
-// Instead rely on the token payload which carries permissions
 
 export async function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname;
@@ -56,10 +55,26 @@ export async function middleware(req: NextRequest) {
             const { payload } = await jwtVerify(token, JWT_SECRET);
 
             const userRole = payload.role as string;
-            const allowedFeatures = (payload.features as string[]) || [];
+
+            // Fetch LIVE permissions from DB instead of relying on stale JWT features
+            let allowedFeatures: string[] = [];
+            if (isSuperAdmin(userRole)) {
+                allowedFeatures = ["__ALL__"];
+            } else {
+                try {
+                    const dbPermissions = await db.rolePermission.findMany({
+                        where: { role: userRole as any, enabled: true },
+                        select: { feature: true },
+                    });
+                    allowedFeatures = dbPermissions.map((p) => p.feature);
+                } catch {
+                    // Fallback to JWT features if DB query fails
+                    allowedFeatures = (payload.features as string[]) || [];
+                }
+            }
 
             if (isDashboardRoute) {
-                // Step 1: Role-based base path access
+                // Step 1: Role-based base path access (first-pass coarse check)
                 let hasRoleAccess = true;
                 for (const [route, allowedRoles] of Object.entries(rolePaths)) {
                     if (path.startsWith(route)) {
@@ -70,16 +85,18 @@ export async function middleware(req: NextRequest) {
                     }
                 }
 
-                if (!hasRoleAccess) {
-                    return NextResponse.redirect(new URL("/dashboard/unauthorized", req.url));
-                }
-
                 // Step 2: Feature-level permission check (skip for SUPER_ADMIN)
                 if (userRole !== "SUPER_ADMIN") {
                     const canAccess = canAccessRoute(path, userRole, allowedFeatures as FeatureKey[]);
                     if (!canAccess) {
                         return NextResponse.redirect(new URL("/dashboard/unauthorized", req.url));
                     }
+                    // Feature check passed — override role-based block for cross-role access
+                    hasRoleAccess = true;
+                }
+
+                if (!hasRoleAccess) {
+                    return NextResponse.redirect(new URL("/dashboard/unauthorized", req.url));
                 }
             }
 
