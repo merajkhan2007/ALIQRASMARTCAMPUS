@@ -324,7 +324,7 @@ export default function DonationsPage() {
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-xl font-bold text-emerald-950 flex items-center gap-2">
                                     <Heart className="w-5 h-5 text-rose-600" />
-                                    نیا عطیہ ریکارڈ کریں / Record New Donation
+                                    <span className='urdu'>نیا عطیہ ریکارڈ کریں</span> / Record New Donation
                                 </h2>
                                 <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">
                                     <XCircle className="w-6 h-6" />
@@ -340,7 +340,7 @@ export default function DonationsPage() {
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             value={formData.donorName}
                                             onChange={(e) => setFormData({ ...formData, donorName: e.target.value })}
-                                            placeholder="پورا نام یا ادارے کا نام / Full name or organization name"
+                                            placeholder="<span className='urdu'>پورا نام یا ادارے کا نام</span> / Full name or organization name"
                                         />
                                     </div>
                                     <div>
@@ -431,7 +431,7 @@ export default function DonationsPage() {
                                             rows={2}
                                             value={formData.address}
                                             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                                            placeholder="پتہ (اختیاری) / Donor address (optional)"
+                                            placeholder="<span className='urdu'>پتہ (اختیاری)</span> / Donor address (optional)"
                                         />
                                     </div>
                                     <div className="col-span-2">
@@ -441,7 +441,7 @@ export default function DonationsPage() {
                                             rows={2}
                                             value={formData.message}
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                            placeholder="عطیہ کا مقصد یا کوئی نوٹ (اختیاری) / Purpose of donation or any note (optional)"
+                                            placeholder="<span className='urdu'>عطیہ کا مقصد یا کوئی نوٹ (اختیاری)</span> / Purpose of donation or any note (optional)"
                                         />
                                     </div>
                                 </div>

@@ -258,3 +258,8 @@
     print-color-adjust: exact;
   }
 }
+
+/* ── URDU FONT UTILITY ─────────────────────────────────────── */
+.urdu {
+  font-family: var(--font-urdu), 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}

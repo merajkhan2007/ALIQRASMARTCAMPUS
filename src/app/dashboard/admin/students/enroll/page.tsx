@@ -112,7 +112,7 @@ export default function AdminEnrollStudentPage() {
                     <h2 className="text-3xl text-emerald-900 mb-2 font-bold">طالب علم کا اندراج کامیاب! / Student Enrolled Successfully!</h2>
                     {admissionNumber && (
                         <p className="text-emerald-700 font-medium mb-2">
-                            داخلہ نمبر / Admission No: <span className="font-bold font-mono text-lg">{admissionNumber}</span>
+                            <span className='urdu'>داخلہ نمبر</span> / Admission No: <span className="font-bold font-mono text-lg">{admissionNumber}</span>
                         </p>
                     )}
                     <div className="flex items-center gap-3 mt-4">
@@ -126,7 +126,7 @@ export default function AdminEnrollStudentPage() {
                             onClick={() => router.push("/dashboard/admin/students")}
                             className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-6 py-3 rounded-lg flex items-center gap-2 transition-colors"
                         >
-                            <ArrowLeft className="w-5 h-5" /> طلباء پر واپس جائیں / Back to Students
+                            <ArrowLeft className="w-5 h-5" /> <span className='urdu'>طلباء پر واپس جائیں</span> / Back to Students
                         </button>
                     </div>
                 </div>
@@ -141,8 +141,8 @@ export default function AdminEnrollStudentPage() {
                                 <Image src="/images/madrasa_name.png" alt="Al-Iqra Name" width={240} height={70} className="object-contain" />
                             </div>
                             <div className="text-right">
-                                <h1 className="text-sm font-black uppercase tracking-widest">طالب علم داخلہ فارم / Student Admission Form</h1>
-                                <p className="text-[9px] text-gray-600">نیا داخلہ ریکارڈ / New Enrollment Record</p>
+                                <h1 className="text-sm font-black uppercase tracking-widest"><span className='urdu'>طالب علم داخلہ فارم</span> / Student Admission Form</h1>
+                                <p className="text-[9px] text-gray-600"><span className='urdu'>نیا داخلہ ریکارڈ</span> / New Enrollment Record</p>
                             </div>
                         </div>
 
@@ -150,10 +150,10 @@ export default function AdminEnrollStudentPage() {
                         <div className="flex justify-between items-start mb-2">
                             <div>
                                 <div className="border border-black p-1.5 text-[11px] font-bold inline-block bg-gray-100">
-                                    داخلہ نمبر / ADMISSION NO: {printData.admission.admissionNumber}
+                                    <span className='urdu'>داخلہ نمبر</span> / ADMISSION NO: {printData.admission.admissionNumber}
                                 </div>
                                 <div className="border border-black p-1.5 text-[11px] font-bold inline-block bg-gray-100 ml-2">
-                                    تاریخ / DATE: {format(new Date(printData.admission.appliedAt), "dd/MM/yyyy")}
+                                    <span className='urdu'>تاریخ</span> / DATE: {format(new Date(printData.admission.appliedAt), "dd/MM/yyyy")}
                                 </div>
                             </div>
                             <div className="w-20 h-24 border border-black flex items-center justify-center overflow-hidden bg-gray-50">
@@ -168,31 +168,31 @@ export default function AdminEnrollStudentPage() {
                         <div className="space-y-2 text-[10px]">
                             {/* 1. Basic Info */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">1. بنیادی معلومات / Basic Information</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">1. <span className='urdu'>بنیادی معلومات</span> / Basic Information</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black w-1/4">پورا نام / Full Name</th>
+                                            <th className="p-1 border-r border-black w-1/4"><span className='urdu'>پورا نام</span> / Full Name</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.fullName}</td>
-                                            <th className="p-1 border-r border-black w-1/6">عربی نام / Arabic Name</th>
+                                            <th className="p-1 border-r border-black w-1/6"><span className='urdu'>عربی نام</span> / Arabic Name</th>
                                             <td className="p-1 font-semibold">{printData.admission.arabicName || '-'}</td>
                                         </tr>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black">جنس / Gender</th>
-                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.gender === "Male" ? "مرد / Male" : printData.admission.gender === "Female" ? "خاتون / Female" : printData.admission.gender}</td>
-                                            <th className="p-1 border-r border-black">تاریخ پیدائش / Date of Birth</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>جنس</span> / Gender</th>
+                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.gender === "Male" ? <><span className='urdu'>مرد</span> / Male</> : printData.admission.gender === "Female" ? <><span className='urdu'>خاتون</span> / Female</> : printData.admission.gender}</td>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>تاریخ پیدائش</span> / Date of Birth</th>
                                             <td className="p-1 font-semibold">{format(new Date(printData.admission.dob), "dd/MM/yyyy")}</td>
                                         </tr>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black">آدھار نمبر / Aadhaar Number</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>آدھار نمبر</span> / Aadhaar Number</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.aadhaarNumber || '-'}</td>
-                                            <th className="p-1 border-r border-black">بلڈ گروپ / Blood Group</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>بلڈ گروپ</span> / Blood Group</th>
                                             <td className="p-1 font-semibold">{printData.admission.bloodGroup || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <th className="p-1 border-r border-black">مذہب / Religion</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>مذہب</span> / Religion</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.religion || 'Islam'}</td>
-                                            <th className="p-1 border-r border-black">زمرہ / Category</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>زمرہ</span> / Category</th>
                                             <td className="p-1 font-semibold">{printData.admission.category || '-'}</td>
                                         </tr>
                                     </tbody>
@@ -201,28 +201,28 @@ export default function AdminEnrollStudentPage() {
 
                             {/* 2. Islamic Details */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">2. اسلامی تعلیمی تفصیلات / Islamic Academic Details</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">2. <span className='urdu'>اسلامی تعلیمی تفصیلات</span> / Islamic Academic Details</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black w-1/4">داخلہ برائے کورس / Course Applying For</th>
+                                            <th className="p-1 border-r border-black w-1/4"><span className='urdu'>داخلہ برائے کورس</span> / Course Applying For</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.courseApplyingFor || 'Regular'}</td>
-                                            <th className="p-1 border-r border-black w-1/6">حفظ کی حیثیت / Hifz Status</th>
+                                            <th className="p-1 border-r border-black w-1/6"><span className='urdu'>حفظ کی حیثیت</span> / Hifz Status</th>
                                             <td className="p-1 font-semibold">{printData.admission.hifzStatus || 'None'}</td>
                                         </tr>
                                         {printData.admission.totalParasMemorized && (
                                             <tr className="border-b border-black">
-                                                <th className="p-1 border-r border-black">پارے یاد / Paras Memorized</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>پارے یاد</span> / Paras Memorized</th>
                                                 <td className="p-1 border-r border-black font-semibold">{printData.admission.totalParasMemorized}</td>
-                                                <th className="p-1 border-r border-black">تجوید کی سطح / Tajweed Level</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>تجوید کی سطح</span> / Tajweed Level</th>
                                                 <td className="p-1 font-semibold">{printData.admission.tajweedLevel || '-'}</td>
                                             </tr>
                                         )}
                                         {printData.admission.previousMadrasa && (
                                             <tr>
-                                                <th className="p-1 border-r border-black">پچھلا مدرسہ / Previous Madrasa</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>پچھلا مدرسہ</span> / Previous Madrasa</th>
                                                 <td className="p-1 border-r border-black font-semibold">{printData.admission.previousMadrasa}</td>
-                                                <th className="p-1 border-r border-black">قاری صاحب کا نام / Qari Name</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>قاری صاحب کا نام</span> / Qari Name</th>
                                                 <td className="p-1 font-semibold">{printData.admission.qariName || '-'}</td>
                                             </tr>
                                         )}
@@ -232,23 +232,23 @@ export default function AdminEnrollStudentPage() {
 
                             {/* 3. Academic Background */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">3. تعلیمی پس منظر / Academic Background</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">3. <span className='urdu'>تعلیمی پس منظر</span> / Academic Background</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black w-1/4">پچھلا اسکول / Previous School</th>
+                                            <th className="p-1 border-r border-black w-1/4"><span className='urdu'>پچھلا اسکول</span> / Previous School</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.previousSchoolName || '-'}</td>
-                                            <th className="p-1 border-r border-black w-1/6">بورڈ / Board</th>
+                                            <th className="p-1 border-r border-black w-1/6"><span className='urdu'>بورڈ</span> / Board</th>
                                             <td className="p-1 font-semibold">{printData.admission.boardName || '-'}</td>
                                         </tr>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black">آخری کلاس پاس / Last Class Passed</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>آخری کلاس پاس</span> / Last Class Passed</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.lastClassPassed || '-'}</td>
-                                            <th className="p-1 border-r border-black">گریڈ / فیصد / Grade / %</th>
+                                            <th className="p-1 border-r border-black">گریڈ / <span className='urdu'>فیصد</span> / Grade / %</th>
                                             <td className="p-1 font-semibold">{printData.admission.percentageOrGrade || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <th className="p-1 border-r border-black">تعلیم کا ذریعہ / Medium of Study</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>تعلیم کا ذریعہ</span> / Medium of Study</th>
                                             <td colSpan={3} className="p-1 font-semibold">{printData.admission.mediumOfStudy || '-'}</td>
                                         </tr>
                                     </tbody>
@@ -257,34 +257,34 @@ export default function AdminEnrollStudentPage() {
 
                             {/* 4. Parent / Guardian */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">4. والدین / سرپرست کی تفصیلات / Parent / Guardian Details</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">4. والدین / <span className='urdu'>سرپرست کی تفصیلات</span> / Parent / Guardian Details</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black w-1/4">والد کا نام / Father's Name</th>
+                                            <th className="p-1 border-r border-black w-1/4"><span className='urdu'>والد کا نام</span> / Father's Name</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.fatherName || '-'}</td>
-                                            <th className="p-1 border-r border-black w-1/6">والد کا موبائل / Father's Mobile</th>
+                                            <th className="p-1 border-r border-black w-1/6"><span className='urdu'>والد کا موبائل</span> / Father's Mobile</th>
                                             <td className="p-1 font-semibold">{printData.admission.fatherMobile || '-'}</td>
                                         </tr>
                                         {printData.admission.fatherOccupation && (
                                             <tr className="border-b border-black">
-                                                <th className="p-1 border-r border-black">والد کا پیشہ / Father's Occupation</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>والد کا پیشہ</span> / Father's Occupation</th>
                                                 <td className="p-1 border-r border-black font-semibold">{printData.admission.fatherOccupation}</td>
-                                                <th className="p-1 border-r border-black">سالانہ آمدنی / Annual Income</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>سالانہ آمدنی</span> / Annual Income</th>
                                                 <td className="p-1 font-semibold">{printData.admission.fatherAnnualIncome || '-'}</td>
                                             </tr>
                                         )}
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black">والدہ کا نام / Mother's Name</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>والدہ کا نام</span> / Mother's Name</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.motherName || '-'}</td>
-                                            <th className="p-1 border-r border-black">والدہ کا موبائل / Mother's Mobile</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>والدہ کا موبائل</span> / Mother's Mobile</th>
                                             <td className="p-1 font-semibold">{printData.admission.motherMobile || '-'}</td>
                                         </tr>
                                         {printData.admission.guardianName && (
                                             <tr>
-                                                <th className="p-1 border-r border-black">سرپرست / Guardian</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>سرپرست</span> / Guardian</th>
                                                 <td className="p-1 border-r border-black font-semibold">{printData.admission.guardianName} ({printData.admission.guardianRelationship || 'N/A'})</td>
-                                                <th className="p-1 border-r border-black">سرپرست کا موبائل / Guardian Mobile</th>
+                                                <th className="p-1 border-r border-black"><span className='urdu'>سرپرست کا موبائل</span> / Guardian Mobile</th>
                                                 <td className="p-1 font-semibold">{printData.admission.guardianMobile || '-'}</td>
                                             </tr>
                                         )}
@@ -294,17 +294,17 @@ export default function AdminEnrollStudentPage() {
 
                             {/* 5. Address Details */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">5. پتے کی تفصیلات / Address Details</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">5. <span className='urdu'>پتے کی تفصیلات</span> / Address Details</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black w-1/4">مکمل پتہ / Full Address</th>
+                                            <th className="p-1 border-r border-black w-1/4"><span className='urdu'>مکمل پتہ</span> / Full Address</th>
                                             <td colSpan={3} className="p-1 font-semibold">{printData.admission.fullAddress || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <th className="p-1 border-r border-black">شہر / City</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>شہر</span> / City</th>
                                             <td className="p-1 border-r border-black font-semibold">{printData.admission.city || '-'}</td>
-                                            <th className="p-1 border-r border-black">ریاست اور پن کوڈ / State & Pincode</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>ریاست اور پن کوڈ</span> / State & Pincode</th>
                                             <td className="p-1 font-semibold">{printData.admission.state || '-'} - {printData.admission.pincode || '-'}</td>
                                         </tr>
                                     </tbody>
@@ -313,19 +313,19 @@ export default function AdminEnrollStudentPage() {
 
                             {/* 6. Hostel & Transport */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">6. ہاسٹل اور ٹرانسپورٹ / Hostel & Transport</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">6. <span className='urdu'>ہاسٹل اور ٹرانسپورٹ</span> / Hostel & Transport</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr className="border-b border-black">
-                                            <th className="p-1 border-r border-black w-1/4">ہاسٹل درکار؟ / Hostel Required?</th>
-                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.hostelRequired ? "ہاں / YES" : "نہیں / NO"}</td>
-                                            <th className="p-1 border-r border-black w-1/6">مقامی سرپرست / Local Guardian</th>
+                                            <th className="p-1 border-r border-black w-1/4"><span className='urdu'>ہاسٹل درکار؟</span> / Hostel Required?</th>
+                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.hostelRequired ? <><span className='urdu'>ہاں</span> / YES</> : <><span className='urdu'>نہیں</span> / NO</>}</td>
+                                            <th className="p-1 border-r border-black w-1/6"><span className='urdu'>مقامی سرپرست</span> / Local Guardian</th>
                                             <td className="p-1 font-semibold">{printData.admission.localGuardianForHostel || '-'}</td>
                                         </tr>
                                         <tr>
-                                            <th className="p-1 border-r border-black">ٹرانسپورٹ درکار؟ / Transport Required?</th>
-                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.transportRequired ? "ہاں / YES" : "نہیں / NO"}</td>
-                                            <th className="p-1 border-r border-black">پک اپ کی جگہ / Pickup Location</th>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>ٹرانسپورٹ درکار؟</span> / Transport Required?</th>
+                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.transportRequired ? <><span className='urdu'>ہاں</span> / YES</> : <><span className='urdu'>نہیں</span> / NO</>}</td>
+                                            <th className="p-1 border-r border-black"><span className='urdu'>پک اپ کی جگہ</span> / Pickup Location</th>
                                             <td className="p-1 font-semibold">{printData.admission.pickupLocation || '-'}</td>
                                         </tr>
                                     </tbody>
@@ -335,22 +335,22 @@ export default function AdminEnrollStudentPage() {
                             {/* 7. Medical Information */}
                             {(printData.admission.medicalCondition || printData.admission.allergies || printData.admission.emergencyContactName) && (
                                 <div>
-                                    <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">7. طبی معلومات / Medical Information</h3>
+                                    <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">7. <span className='urdu'>طبی معلومات</span> / Medical Information</h3>
                                     <table className="w-full border-x border-b border-black text-left border-collapse">
                                         <tbody>
                                             {printData.admission.medicalCondition && (
                                                 <tr className="border-b border-black">
-                                                    <th className="p-1 border-r border-black w-1/4">طبی حالت / Medical Condition</th>
+                                                    <th className="p-1 border-r border-black w-1/4"><span className='urdu'>طبی حالت</span> / Medical Condition</th>
                                                     <td className="p-1 border-r border-black font-semibold">{printData.admission.medicalCondition}</td>
-                                                    <th className="p-1 border-r border-black w-1/6">الرجی / Allergies</th>
+                                                    <th className="p-1 border-r border-black w-1/6"><span className='urdu'>الرجی</span> / Allergies</th>
                                                     <td className="p-1 font-semibold">{printData.admission.allergies || '-'}</td>
                                                 </tr>
                                             )}
                                             {printData.admission.emergencyContactName && (
                                                 <tr>
-                                                    <th className="p-1 border-r border-black">ہنگامی رابطہ / Emergency Contact</th>
+                                                    <th className="p-1 border-r border-black"><span className='urdu'>ہنگامی رابطہ</span> / Emergency Contact</th>
                                                     <td className="p-1 border-r border-black font-semibold">{printData.admission.emergencyContactName}</td>
-                                                    <th className="p-1 border-r border-black">ہنگامی نمبر / Emergency No.</th>
+                                                    <th className="p-1 border-r border-black"><span className='urdu'>ہنگامی نمبر</span> / Emergency No.</th>
                                                     <td className="p-1 font-semibold">{printData.admission.emergencyContactNum || '-'}</td>
                                                 </tr>
                                             )}
@@ -361,13 +361,13 @@ export default function AdminEnrollStudentPage() {
 
                             {/* 8. Document Uploads */}
                             <div>
-                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">8. دستاویزات / Document Uploads</h3>
+                                <h3 className="font-bold bg-gray-200 border border-black px-2 py-0.5 uppercase text-left">8. <span className='urdu'>دستاویزات</span> / Document Uploads</h3>
                                 <table className="w-full border-x border-b border-black text-left border-collapse">
                                     <tbody>
                                         <tr>
-                                            <th className="p-1 border-r border-black w-[33%]">پیدائش سرٹیفکیٹ / Birth Cert: {printData.admission.birthCertificate ? "✅ ہاں" : "❌ نہیں"}</th>
-                                            <th className="p-1 border-r border-black w-[33%]">آدھار کارڈ / Aadhaar: {printData.admission.aadhaarCard ? "✅ ہاں" : "❌ نہیں"}</th>
-                                            <th className="p-1">ٹرانسفر سرٹیفکیٹ / TC: {printData.admission.transferCertificate ? "✅ ہاں" : "❌ نہیں"}</th>
+                                            <th className="p-1 border-r border-black w-[33%]"><span className='urdu'>پیدائش سرٹیفکیٹ</span> / Birth Cert: {printData.admission.birthCertificate ? "✅ ہاں" : "❌ نہیں"}</th>
+                                            <th className="p-1 border-r border-black w-[33%]"><span className='urdu'>آدھار کارڈ</span> / Aadhaar: {printData.admission.aadhaarCard ? "✅ ہاں" : "❌ نہیں"}</th>
+                                            <th className="p-1"><span className='urdu'>ٹرانسفر سرٹیفکیٹ</span> / TC: {printData.admission.transferCertificate ? "✅ ہاں" : "❌ نہیں"}</th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -376,19 +376,19 @@ export default function AdminEnrollStudentPage() {
 
                         {/* Signature Block */}
                         <div className="mt-4 pt-2 border-t border-black">
-                            <h3 className="text-center font-bold text-[11px] mb-1 uppercase tracking-wider">اقرار نامہ اور دستخط / Declaration & Signatures</h3>
+                            <h3 className="text-center font-bold text-[11px] mb-1 uppercase tracking-wider"><span className='urdu'>اقرار نامہ اور دستخط</span> / Declaration & Signatures</h3>
                             <p className="text-center text-[9px] mb-12 italic text-gray-800 px-4">
                                 "میں اقرار کرتا/کرتی ہوں کہ فراہم کردہ تمام معلومات درست ہیں۔ میں الاقراء ماڈرن مدرسہ کے قوانین کی پابندی کروں گا/کروں گی۔"
                             </p>
                             <div className="flex justify-between items-end px-4">
                                 <div className="text-center">
                                     <div className="w-40 border-b border-black mb-1"></div>
-                                    <p className="font-bold text-[9px]">والدین / سرپرست کے دستخط / Signature of Parent / Guardian</p>
-                                    <p className="text-[9px] mt-1">تاریخ / Date: ___/___/20__</p>
+                                    <p className="font-bold text-[9px]">والدین / <span className='urdu'>سرپرست کے دستخط</span> / Signature of Parent / Guardian</p>
+                                    <p className="text-[9px] mt-1"><span className='urdu'>تاریخ</span> / Date: ___/___/20__</p>
                                 </div>
                                 <div className="text-center">
                                     <div className="w-40 border-b border-black mb-1"></div>
-                                    <p className="font-bold text-[9px]">پرنسپل کی مہر اور دستخط / Seal & Signature of Principal</p>
+                                    <p className="font-bold text-[9px]"><span className='urdu'>پرنسپل کی مہر اور دستخط</span> / Seal & Signature of Principal</p>
                                     <p className="text-[9px] mt-1">Al-Iqra Modern Madrasa</p>
                                 </div>
                             </div>
@@ -408,23 +408,23 @@ export default function AdminEnrollStudentPage() {
                     </Button>
                 </Link>
                 <div>
-                    <h1 className="text-3xl font-bold tracking-tight text-emerald-950">نیا طالب علم داخل کریں / Enroll New Student</h1>
-                    <p className="text-gray-500">نئے طالب علم کے اندراج کے لیے داخلہ فارم مکمل کریں۔ / Complete the admission form to register a new student.</p>
+                    <h1 className="text-3xl font-bold tracking-tight text-emerald-950"><span className='urdu'>نیا طالب علم داخل کریں</span> / Enroll New Student</h1>
+                    <p className="text-gray-500"><span className='urdu'>نئے طالب علم کے اندراج کے لیے داخلہ فارم مکمل کریں۔</span> / Complete the admission form to register a new student.</p>
                 </div>
             </div>
 
             <div className="flex flex-col lg:flex-row gap-8 items-start relative">
                 {/* Sidebar Navigation */}
                 <aside className="hidden lg:block w-64 shrink-0 sticky top-6 bg-white p-5 rounded-xl border border-gray-200 shadow-sm z-10">
-                    <h4 className="font-bold text-emerald-950 mb-4 px-2 text-lg border-b border-gray-100 pb-2">فارم کے حصے / Form Sections</h4>
+                    <h4 className="font-bold text-emerald-950 mb-4 px-2 text-lg border-b border-gray-100 pb-2"><span className='urdu'>فارم کے حصے</span> / Form Sections</h4>
                     <nav className="flex flex-col space-y-1.5">
-                        <a href="#section-1" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">1. بنیادی معلومات / Basic Information</a>
-                        <a href="#section-2" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">2. اسلامی تفصیلات / Islamic Details</a>
-                        <a href="#section-3" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">3. تعلیمی پس منظر / Academic Background</a>
-                        <a href="#section-4" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">4. والدین / سرپرست / Parent/Guardian</a>
-                        <a href="#section-5" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">5. پتے کی تفصیلات / Address Details</a>
-                        <a href="#section-6" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">6. ہاسٹل اور ٹرانسپورٹ / Hostel & Transport</a>
-                        <a href="#section-7" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">7. دستاویزات اپ لوڈ / Document Uploads</a>
+                        <a href="#section-1" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">1. <span className='urdu'>بنیادی معلومات</span> / Basic Information</a>
+                        <a href="#section-2" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">2. <span className='urdu'>اسلامی تفصیلات</span> / Islamic Details</a>
+                        <a href="#section-3" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">3. <span className='urdu'>تعلیمی پس منظر</span> / Academic Background</a>
+                        <a href="#section-4" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">4. والدین / <span className='urdu'>سرپرست</span> / Parent/Guardian</a>
+                        <a href="#section-5" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">5. <span className='urdu'>پتے کی تفصیلات</span> / Address Details</a>
+                        <a href="#section-6" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">6. <span className='urdu'>ہاسٹل اور ٹرانسپورٹ</span> / Hostel & Transport</a>
+                        <a href="#section-7" className="text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 px-3 py-2.5 rounded-lg transition-all">7. <span className='urdu'>دستاویزات اپ لوڈ</span> / Document Uploads</a>
                     </nav>
                 </aside>
 
@@ -437,7 +437,7 @@ export default function AdminEnrollStudentPage() {
                     )}
 
                     <div id="section-1" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-6">1. بنیادی معلومات / Basic Information</h3>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-6">1. <span className='urdu'>بنیادی معلومات</span> / Basic Information</h3>
                         
                         <div className="flex flex-col sm:flex-row gap-8 mb-6">
                             {/* Photo Upload Prominent Area */}
@@ -455,7 +455,7 @@ export default function AdminEnrollStudentPage() {
                                 </div>
                                 <div className="text-center">
                                     <label htmlFor="studentPhotoInput" className="cursor-pointer text-sm font-semibold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200 transition-colors">
-                                        تصویر اپ لوڈ کریں * / Upload Photo *
+                                        <span className='urdu'>تصویر اپ لوڈ کریں</span> * / Upload Photo *
                                     </label>
                                     <input 
                                         id="studentPhotoInput" 
@@ -466,35 +466,35 @@ export default function AdminEnrollStudentPage() {
                                         className="hidden" 
                                         onChange={handlePhotoChange} 
                                     />
-                                    <p className="text-[10px] text-gray-400 mt-2">پاسپورٹ سائز۔ زیادہ سے زیادہ 2MB / Passport size. Max 2MB.</p>
+                                    <p className="text-[10px] text-gray-400 mt-2"><span className='urdu'>پاسپورٹ سائز۔ زیادہ سے زیادہ 2MB</span> / Passport size. Max 2MB.</p>
                                 </div>
                             </div>
 
                             <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">پورا نام * / Full Name *</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>پورا نام</span> * / Full Name *</label>
                                 <Input name="fullName" required placeholder="احمد عبداللہ / Ahmad Abdullah" />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">جنس * / Gender *</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>جنس</span> * / Gender *</label>
                                 <select name="gender" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-                                    <option value="">جنس منتخب کریں / Select Gender</option>
-                                    <option value="Male">مرد / Male</option>
-                                    <option value="Female">خاتون / Female</option>
+                                    <option value=""><span className='urdu'>جنس منتخب کریں</span> / Select Gender</option>
+                                    <option value="Male"><span className='urdu'>مرد</span> / Male</option>
+                                    <option value="Female"><span className='urdu'>خاتون</span> / Female</option>
                                 </select>
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 <div className="space-y-1">
-                                    <label className="text-xs font-medium text-slate-700">تاریخ پیدائش * / Date of Birth *</label>
+                                    <label className="text-xs font-medium text-slate-700"><span className='urdu'>تاریخ پیدائش</span> * / Date of Birth *</label>
                                     <Input name="dob" type="date" required onChange={(e) => setDob(e.target.value)} />
                                 </div>
                                 <div className="space-y-1">
-                                    <label className="text-xs font-medium text-slate-700">عمر / Age</label>
+                                    <label className="text-xs font-medium text-slate-700"><span className='urdu'>عمر</span> / Age</label>
                                     <Input readOnly value={calculateAge(dob)} disabled className="bg-slate-50" />
                                 </div>
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">آدھار نمبر / Aadhaar Number</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>آدھار نمبر</span> / Aadhaar Number</label>
                                 <Input name="aadhaarNumber" placeholder="xxxx-xxxx-xxxx" />
                             </div>
                         </div>
@@ -503,24 +503,24 @@ export default function AdminEnrollStudentPage() {
 
                     {/* --- STEP 2: ISLAMIC DETAILS --- */}
                     <div id="section-2" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">2. اسلامی تعلیمی تفصیلات / Islamic Academic Details</h3>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">2. <span className='urdu'>اسلامی تعلیمی تفصیلات</span> / Islamic Academic Details</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1">
                                 <label className="text-xs font-medium text-slate-700">داخلہ برائے کورس * / Course Applying For *</label>
                                 <select name="courseApplyingFor" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-                                    <option value="">کورس منتخب کریں / Select Course</option>
-                                    <option value="Hifz">حفظ / Hifz</option>
-                                    <option value="Nazra">ناظرہ / Nazra</option>
-                                    <option value="Alim">عالم / Alim</option>
-                                    <option value="Regular">صرف ریگولر / Regular Only</option>
+                                    <option value=""><span className='urdu'>کورس منتخب کریں</span> / Select Course</option>
+                                    <option value="Hifz"><span className='urdu'>حفظ</span> / Hifz</option>
+                                    <option value="Nazra"><span className='urdu'>ناظرہ</span> / Nazra</option>
+                                    <option value="Alim"><span className='urdu'>عالم</span> / Alim</option>
+                                    <option value="Regular"><span className='urdu'>صرف ریگولر</span> / Regular Only</option>
                                 </select>
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">حفظ کی حیثیت / Hifz Status</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>حفظ کی حیثیت</span> / Hifz Status</label>
                                 <select name="hifzStatus" className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
-                                    <option value="None">کوئی نہیں / None</option>
-                                    <option value="Partial">جزوی / Partial</option>
-                                    <option value="Complete">مکمل حافظ / Complete Hafiz</option>
+                                    <option value="None"><span className='urdu'>کوئی نہیں</span> / None</option>
+                                    <option value="Partial"><span className='urdu'>جزوی</span> / Partial</option>
+                                    <option value="Complete"><span className='urdu'>مکمل حافظ</span> / Complete Hafiz</option>
                                 </select>
                             </div>
                         </div>
@@ -528,26 +528,26 @@ export default function AdminEnrollStudentPage() {
 
                     {/* --- STEP 3: ACADEMIC BACKGROUND --- */}
                     <div id="section-3" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">3. تعلیمی پس منظر / Academic Background</h3>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">3. <span className='urdu'>تعلیمی پس منظر</span> / Academic Background</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">پچھلے اسکول کا نام / Previous School Name</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>پچھلے اسکول کا نام</span> / Previous School Name</label>
                                 <Input name="previousSchoolName" />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">بورڈ کا نام / Board Name</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>بورڈ کا نام</span> / Board Name</label>
                                 <Input name="boardName" placeholder="مثلاً CBSE / اسٹیٹ بورڈ" />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">آخری کلاس پاس / Last Class Passed</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>آخری کلاس پاس</span> / Last Class Passed</label>
                                 <Input name="lastClassPassed" />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">فیصد / گریڈ / Percentage / Grade</label>
+                                <label className="text-xs font-medium text-slate-700">فیصد / <span className='urdu'>گریڈ</span> / Percentage / Grade</label>
                                 <Input name="percentageOrGrade" />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">تعلیم کا ذریعہ / Medium of Study</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>تعلیم کا ذریعہ</span> / Medium of Study</label>
                                 <Input name="mediumOfStudy" placeholder="مثلاً انگریزی، اردو" />
                             </div>
                         </div>
@@ -555,55 +555,55 @@ export default function AdminEnrollStudentPage() {
 
                     {/* --- STEP 4: PARENTS --- */}
                     <div id="section-4" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">4. والدین / سرپرست کی تفصیلات / Parent / Guardian Details</h3>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">4. والدین / <span className='urdu'>سرپرست کی تفصیلات</span> / Parent / Guardian Details</h3>
                         <div className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-lg border">
-                                <h4 className="md:col-span-2 text-sm font-bold text-slate-800">والد کی تفصیلات / Father's Details</h4>
-                                <div className="space-y-1"><label className="text-xs font-medium">والد کا نام * / Father Name *</label><Input name="fatherName" required /></div>
-                                <div className="space-y-1"><label className="text-xs font-medium">موبائل نمبر * / Mobile Number *</label><Input name="fatherMobile" required type="tel" /></div>
+                                <h4 className="md:col-span-2 text-sm font-bold text-slate-800"><span className='urdu'>والد کی تفصیلات</span> / Father's Details</h4>
+                                <div className="space-y-1"><label className="text-xs font-medium"><span className='urdu'>والد کا نام</span> * / Father Name *</label><Input name="fatherName" required /></div>
+                                <div className="space-y-1"><label className="text-xs font-medium"><span className='urdu'>موبائل نمبر</span> * / Mobile Number *</label><Input name="fatherMobile" required type="tel" /></div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-lg border">
-                                <h4 className="md:col-span-2 text-sm font-bold text-slate-800">والدہ کی تفصیلات / Mother's Details</h4>
-                                <div className="space-y-1"><label className="text-xs font-medium">والدہ کا نام / Mother Name</label><Input name="motherName" /></div>
+                                <h4 className="md:col-span-2 text-sm font-bold text-slate-800"><span className='urdu'>والدہ کی تفصیلات</span> / Mother's Details</h4>
+                                <div className="space-y-1"><label className="text-xs font-medium"><span className='urdu'>والدہ کا نام</span> / Mother Name</label><Input name="motherName" /></div>
                             </div>
                         </div>
                     </div>
 
                     {/* --- STEP 5: ADDRESS --- */}
                     <div id="section-5" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">5. پتے کی تفصیلات / Address Details</h3>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">5. <span className='urdu'>پتے کی تفصیلات</span> / Address Details</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-1 md:col-span-2">
-                                <label className="text-xs font-medium text-slate-700">مکمل گھر کا پتہ * / Full Home Address *</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>مکمل گھر کا پتہ</span> * / Full Home Address *</label>
                                 <textarea name="fullAddress" required rows={3} className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500" placeholder="گلی، اپارٹمنٹ، علاقہ..." />
                             </div>
-                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700">شہر / City</label><Input name="city" /></div>
-                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700">ضلع / District</label><Input name="district" /></div>
-                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700">ریاست / State</label><Input name="state" /></div>
-                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700">پن کوڈ / Pincode</label><Input name="pincode" /></div>
+                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700"><span className='urdu'>شہر</span> / City</label><Input name="city" /></div>
+                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700"><span className='urdu'>ضلع</span> / District</label><Input name="district" /></div>
+                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700"><span className='urdu'>ریاست</span> / State</label><Input name="state" /></div>
+                            <div className="space-y-1"><label className="text-xs font-medium text-slate-700"><span className='urdu'>پن کوڈ</span> / Pincode</label><Input name="pincode" /></div>
                         </div>
                     </div>
 
                     {/* --- STEP 6: HOSTEL & TRANSPORT --- */}
                     <div id="section-6" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">6. ہاسٹل اور ٹرانسپورٹ کی سہولیات / Hostel & Transport Facilities</h3>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">6. <span className='urdu'>ہاسٹل اور ٹرانسپورٹ کی سہولیات</span> / Hostel & Transport Facilities</h3>
                         <div className="space-y-6">
                             <div className="flex items-center gap-4 p-4 border rounded-lg bg-slate-50">
                                 <input type="checkbox" name="hostelRequired" id="hostelReq" className="w-5 h-5 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500" />
-                                <label htmlFor="hostelReq" className="text-sm font-medium text-slate-800">کیا آپ کو ہاسٹل کی رہائش درکار ہے؟ / Do you require Hostel Accommodation?</label>
+                                <label htmlFor="hostelReq" className="text-sm font-medium text-slate-800"><span className='urdu'>کیا آپ کو ہاسٹل کی رہائش درکار ہے؟</span> / Do you require Hostel Accommodation?</label>
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">مقامی سرپرست کا نام (ہاسٹل کے طلباء کے لیے) / Local Guardian Name (For Hostel Students)</label>
+                                <label className="text-xs font-medium text-slate-700"><span className='urdu'>مقامی سرپرست کا نام (ہاسٹل کے طلباء کے لیے)</span> / Local Guardian Name (For Hostel Students)</label>
                                 <Input name="localGuardianForHostel" />
                             </div>
 
                             <div className="flex items-center gap-4 p-4 border rounded-lg bg-slate-50 mt-6">
                                 <input type="checkbox" name="transportRequired" id="transReq" className="w-5 h-5 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500" />
-                                <label htmlFor="transReq" className="text-sm font-medium text-slate-800">کیا آپ کو بس / ٹرانسپورٹ کی سہولت درکار ہے؟ / Do you require Bus/Transport Facility?</label>
+                                <label htmlFor="transReq" className="text-sm font-medium text-slate-800">کیا آپ کو بس / <span className='urdu'>ٹرانسپورٹ کی سہولت درکار ہے؟</span> / Do you require Bus/Transport Facility?</label>
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-medium text-slate-700">پک اپ کی جگہ / اسٹاپ / Pickup Location / Stop</label>
+                                <label className="text-xs font-medium text-slate-700">پک اپ کی جگہ / <span className='urdu'>اسٹاپ</span> / Pickup Location / Stop</label>
                                 <Input name="pickupLocation" placeholder="قریبی نشان / Nearest Landmark" />
                             </div>
                         </div>
@@ -611,15 +611,15 @@ export default function AdminEnrollStudentPage() {
 
                     {/* --- STEP 7: DOCUMENT UPLOAD --- */}
                     <div id="section-7" className="scroll-mt-8 mb-8">
-                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">7. دستاویزات اپ لوڈ / Document Uploads</h3>
-                        <p className="text-xs text-slate-500 mb-6 pb-2 border-b">براہ کرم واضح تصاویر یا PDF اپ لوڈ کریں۔ ہر فائل کی حد 5MB ہے۔ / Please upload clear images or PDFs. Limit 5MB per file.</p>
+                        <h3 className="text-lg font-bold text-emerald-900 border-b pb-2 mb-4">7. <span className='urdu'>دستاویزات اپ لوڈ</span> / Document Uploads</h3>
+                        <p className="text-xs text-slate-500 mb-6 pb-2 border-b">براہ کرم واضح تصاویر یا PDF اپ لوڈ کریں۔ ہر فائل کی حد 5MB <span className='urdu'>ہے۔</span> / Please upload clear images or PDFs. Limit 5MB per file.</p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-700 block mb-1">پیدائش کا سرٹیفکیٹ / Birth Certificate</label>
+                                <label className="text-xs font-bold text-slate-700 block mb-1"><span className='urdu'>پیدائش کا سرٹیفکیٹ</span> / Birth Certificate</label>
                                 <Input name="birthCertificate" type="file" accept=".pdf, image/*" className="file:text-emerald-700" />
                             </div>
                             <div className="space-y-1">
-                                <label className="text-xs font-bold text-slate-700 block mb-1">آدھار کارڈ (طالب علم) / Aadhaar Card (Student)</label>
+                                <label className="text-xs font-bold text-slate-700 block mb-1"><span className='urdu'>آدھار کارڈ (طالب علم)</span> / Aadhaar Card (Student)</label>
                                 <Input name="aadhaarCard" type="file" accept=".pdf, image/*" className="file:text-emerald-700" />
                             </div>
                             <div className="space-y-1">
@@ -629,7 +629,7 @@ export default function AdminEnrollStudentPage() {
                         </div>
 
                         <div className="mt-8 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-800">
-                            <strong>اقرار نامہ / Declaration:</strong> میں اقرار کرتا/کرتی ہوں کہ فراہم کردہ تمام معلومات درست اور صحیح ہیں۔ میں الاقراء ماڈرن مدرسہ کے قوانین و ضوابط کی پابندی کرنے پر رضامند ہوں۔ / I hereby declare that all information provided is true and correct. I agree to abide by the rules and regulations of Al-Iqra Modern Madrasa.
+                            <strong><span className='urdu'>اقرار نامہ</span> / Declaration:</strong> میں اقرار کرتا/<span className='urdu'>کرتی ہوں کہ فراہم کردہ تمام معلومات درست اور صحیح ہیں۔ میں الاقراء ماڈرن مدرسہ کے قوانین و ضوابط کی پابندی کرنے پر رضامند ہوں۔</span> / I hereby declare that all information provided is true and correct. I agree to abide by the rules and regulations of Al-Iqra Modern Madrasa.
                         </div>
                     </div>
 
@@ -640,7 +640,7 @@ export default function AdminEnrollStudentPage() {
                             className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold min-w-[140px]"
                             disabled={loading}
                         >
-                            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "درخواست جمع کرائیں / Submit Application"}
+                            {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><span className='urdu'>درخواست جمع کرائیں</span> / Submit Application</>}
                         </Button>
                     </div>
                 </form>
