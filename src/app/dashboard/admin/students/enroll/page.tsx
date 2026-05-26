@@ -179,7 +179,7 @@ export default function AdminEnrollStudentPage() {
                                         </tr>
                                         <tr className="border-b border-black">
                                             <th className="p-1 border-r border-black">جنس / Gender</th>
-                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.gender}</td>
+                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.gender === "Male" ? "مرد / Male" : printData.admission.gender === "Female" ? "خاتون / Female" : printData.admission.gender}</td>
                                             <th className="p-1 border-r border-black">تاریخ پیدائش / Date of Birth</th>
                                             <td className="p-1 font-semibold">{format(new Date(printData.admission.dob), "dd/MM/yyyy")}</td>
                                         </tr>
@@ -318,13 +318,13 @@ export default function AdminEnrollStudentPage() {
                                     <tbody>
                                         <tr className="border-b border-black">
                                             <th className="p-1 border-r border-black w-1/4">ہاسٹل درکار؟ / Hostel Required?</th>
-                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.hostelRequired ? "YES" : "NO"}</td>
+                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.hostelRequired ? "ہاں / YES" : "نہیں / NO"}</td>
                                             <th className="p-1 border-r border-black w-1/6">مقامی سرپرست / Local Guardian</th>
                                             <td className="p-1 font-semibold">{printData.admission.localGuardianForHostel || '-'}</td>
                                         </tr>
                                         <tr>
                                             <th className="p-1 border-r border-black">ٹرانسپورٹ درکار؟ / Transport Required?</th>
-                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.transportRequired ? "YES" : "NO"}</td>
+                                            <td className="p-1 border-r border-black font-semibold">{printData.admission.transportRequired ? "ہاں / YES" : "نہیں / NO"}</td>
                                             <th className="p-1 border-r border-black">پک اپ کی جگہ / Pickup Location</th>
                                             <td className="p-1 font-semibold">{printData.admission.pickupLocation || '-'}</td>
                                         </tr>
@@ -384,7 +384,7 @@ export default function AdminEnrollStudentPage() {
                                 <div className="text-center">
                                     <div className="w-40 border-b border-black mb-1"></div>
                                     <p className="font-bold text-[9px]">والدین / سرپرست کے دستخط / Signature of Parent / Guardian</p>
-                                    <p className="text-[9px] mt-1">Date: ___/___/20__</p>
+                                    <p className="text-[9px] mt-1">تاریخ / Date: ___/___/20__</p>
                                 </div>
                                 <div className="text-center">
                                     <div className="w-40 border-b border-black mb-1"></div>
