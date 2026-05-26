@@ -6,6 +6,8 @@ import { AdminSidebar } from "@/components/dashboard/AdminSidebar";
 import { AdminTopbar } from "@/components/dashboard/AdminTopbar";
 import { Sidebar } from "@/components/dashboard/Sidebar";
 import { Header } from "@/components/dashboard/Header";
+import { db } from "@/lib/db";
+import { isSuperAdmin } from "@/lib/permissions";
 
 const JWT_SECRET = new TextEncoder().encode(
     process.env.JWT_SECRET || "fallback-secret-for-dev-only"
@@ -48,7 +50,23 @@ export default async function DashboardLayout({
     }
 
     const isAdmin = payload.role === "ADMIN" || payload.role === "SUPER_ADMIN";
-    const allowedFeatures = payload.features || [];
+
+    // Fetch LIVE permissions from DB instead of relying on stale JWT features
+    let allowedFeatures: string[] = [];
+    if (isSuperAdmin(payload.role)) {
+        allowedFeatures = ["__ALL__"];
+    } else {
+        try {
+            const dbPermissions = await db.rolePermission.findMany({
+                where: { role: payload.role as any, enabled: true },
+                select: { feature: true },
+            });
+            allowedFeatures = dbPermissions.map((p) => p.feature);
+        } catch {
+            // Fall back to JWT features if DB query fails
+            allowedFeatures = payload.features || [];
+        }
+    }
 
     return (
         <div className="flex min-h-screen bg-gray-50 text-gray-900 print:block print:min-h-0 print:bg-white">
