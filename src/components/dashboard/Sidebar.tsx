@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
     Home, Users, BookOpen, UserCheck, GraduationCap,
     CreditCard, Calendar, Book, Bell, Settings, Banknote,
-    DollarSign, FileText, MessageSquare, ClipboardList
+    IndianRupee, FileText, MessageSquare, ClipboardList
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { isSuperAdmin } from "@/lib/permissions";
@@ -61,7 +61,7 @@ const roleNavGroups: Record<string, { title: string; href: string; icon: React.R
         { title: "Attendance", href: "/dashboard/admin/attendance", icon: <ClipboardList className="w-5 h-5" />, feature: "attendance" },
         { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
-        { title: "Donations", href: "/dashboard/admin/donations", icon: <DollarSign className="w-5 h-5" />, feature: "donations" },
+        { title: "Donations", href: "/dashboard/admin/donations", icon: <IndianRupee className="w-5 h-5" />, feature: "donations" },
         { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
         { title: "Courses", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" />, feature: "courses" },
         { title: "Payments", href: "/dashboard/admin/payments", icon: <CreditCard className="w-5 h-5" />, feature: "payments" },
@@ -81,7 +81,7 @@ const roleNavGroups: Record<string, { title: string; href: string; icon: React.R
         { title: "Attendance", href: "/dashboard/admin/attendance", icon: <ClipboardList className="w-5 h-5" />, feature: "attendance" },
         { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
-        { title: "Donations", href: "/dashboard/admin/donations", icon: <DollarSign className="w-5 h-5" />, feature: "donations" },
+        { title: "Donations", href: "/dashboard/admin/donations", icon: <IndianRupee className="w-5 h-5" />, feature: "donations" },
         { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
         { title: "Courses", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" />, feature: "courses" },
         { title: "Payments", href: "/dashboard/admin/payments", icon: <CreditCard className="w-5 h-5" />, feature: "payments" },
@@ -101,7 +101,7 @@ const roleNavGroups: Record<string, { title: string; href: string; icon: React.R
         { title: "Attendance", href: "/dashboard/admin/attendance", icon: <ClipboardList className="w-5 h-5" />, feature: "attendance" },
         { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
-        { title: "Donations", href: "/dashboard/admin/donations", icon: <DollarSign className="w-5 h-5" />, feature: "donations" },
+        { title: "Donations", href: "/dashboard/admin/donations", icon: <IndianRupee className="w-5 h-5" />, feature: "donations" },
         { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
         { title: "Courses", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" />, feature: "courses" },
         { title: "Payments", href: "/dashboard/admin/payments", icon: <CreditCard className="w-5 h-5" />, feature: "payments" },
