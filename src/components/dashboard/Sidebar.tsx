@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
     Home, Users, BookOpen, UserCheck, GraduationCap,
-    CreditCard, Calendar, Book, Bell, Settings, Banknote
+    CreditCard, Calendar, Book, Bell, Settings, Banknote,
+    DollarSign, FileText, MessageSquare, ClipboardList
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { isSuperAdmin } from "@/lib/permissions";
@@ -54,21 +55,63 @@ const roleNavGroups: Record<string, { title: string; href: string; icon: React.R
     ],
     HAFIZ: [
         { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "User Management", href: "/dashboard/admin/users", icon: <Users className="w-5 h-5" />, feature: "users" },
+        { title: "Admissions", href: "/dashboard/admin/admissions", icon: <UserCheck className="w-5 h-5" />, feature: "admissions" },
         { title: "Students", href: "/dashboard/admin/students", icon: <GraduationCap className="w-5 h-5" />, feature: "students" },
-        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <UserCheck className="w-5 h-5" />, feature: "attendance" },
+        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <ClipboardList className="w-5 h-5" />, feature: "attendance" },
+        { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
-        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
+        { title: "Donations", href: "/dashboard/admin/donations", icon: <DollarSign className="w-5 h-5" />, feature: "donations" },
+        { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
+        { title: "Courses", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" />, feature: "courses" },
+        { title: "Payments", href: "/dashboard/admin/payments", icon: <CreditCard className="w-5 h-5" />, feature: "payments" },
+        { title: "Exams & Results", href: "/dashboard/admin/exams", icon: <Calendar className="w-5 h-5" />, feature: "exams" },
         { title: "Fees", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Library", href: "/dashboard/admin/library", icon: <Book className="w-5 h-5" />, feature: "library" },
+        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
+        { title: "Blogs", href: "/dashboard/admin/blogs", icon: <FileText className="w-5 h-5" />, feature: "blogs" },
+        { title: "Messages", href: "/dashboard/admin/messages", icon: <MessageSquare className="w-5 h-5" />, feature: "messages" },
+        { title: "Settings", href: "/dashboard/admin/settings", icon: <Settings className="w-5 h-5" />, feature: "settings" },
     ],
     COOK: [
         { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "User Management", href: "/dashboard/admin/users", icon: <Users className="w-5 h-5" />, feature: "users" },
+        { title: "Admissions", href: "/dashboard/admin/admissions", icon: <UserCheck className="w-5 h-5" />, feature: "admissions" },
+        { title: "Students", href: "/dashboard/admin/students", icon: <GraduationCap className="w-5 h-5" />, feature: "students" },
+        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <ClipboardList className="w-5 h-5" />, feature: "attendance" },
+        { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+        { title: "Donations", href: "/dashboard/admin/donations", icon: <DollarSign className="w-5 h-5" />, feature: "donations" },
+        { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
+        { title: "Courses", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" />, feature: "courses" },
+        { title: "Payments", href: "/dashboard/admin/payments", icon: <CreditCard className="w-5 h-5" />, feature: "payments" },
+        { title: "Exams & Results", href: "/dashboard/admin/exams", icon: <Calendar className="w-5 h-5" />, feature: "exams" },
+        { title: "Fees", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Library", href: "/dashboard/admin/library", icon: <Book className="w-5 h-5" />, feature: "library" },
         { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
+        { title: "Blogs", href: "/dashboard/admin/blogs", icon: <FileText className="w-5 h-5" />, feature: "blogs" },
+        { title: "Messages", href: "/dashboard/admin/messages", icon: <MessageSquare className="w-5 h-5" />, feature: "messages" },
+        { title: "Settings", href: "/dashboard/admin/settings", icon: <Settings className="w-5 h-5" />, feature: "settings" },
     ],
     KHADIM: [
         { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "User Management", href: "/dashboard/admin/users", icon: <Users className="w-5 h-5" />, feature: "users" },
+        { title: "Admissions", href: "/dashboard/admin/admissions", icon: <UserCheck className="w-5 h-5" />, feature: "admissions" },
+        { title: "Students", href: "/dashboard/admin/students", icon: <GraduationCap className="w-5 h-5" />, feature: "students" },
+        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <ClipboardList className="w-5 h-5" />, feature: "attendance" },
+        { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+        { title: "Donations", href: "/dashboard/admin/donations", icon: <DollarSign className="w-5 h-5" />, feature: "donations" },
+        { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
+        { title: "Courses", href: "/dashboard/admin/courses", icon: <BookOpen className="w-5 h-5" />, feature: "courses" },
+        { title: "Payments", href: "/dashboard/admin/payments", icon: <CreditCard className="w-5 h-5" />, feature: "payments" },
+        { title: "Exams & Results", href: "/dashboard/admin/exams", icon: <Calendar className="w-5 h-5" />, feature: "exams" },
+        { title: "Fees", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Library", href: "/dashboard/admin/library", icon: <Book className="w-5 h-5" />, feature: "library" },
         { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
+        { title: "Blogs", href: "/dashboard/admin/blogs", icon: <FileText className="w-5 h-5" />, feature: "blogs" },
+        { title: "Messages", href: "/dashboard/admin/messages", icon: <MessageSquare className="w-5 h-5" />, feature: "messages" },
+        { title: "Settings", href: "/dashboard/admin/settings", icon: <Settings className="w-5 h-5" />, feature: "settings" },
     ]
 };
 
