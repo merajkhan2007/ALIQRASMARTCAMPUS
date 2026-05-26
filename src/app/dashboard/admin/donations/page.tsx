@@ -324,7 +324,7 @@ export default function DonationsPage() {
                             <div className="flex justify-between items-center mb-6">
                                 <h2 className="text-xl font-bold text-emerald-950 flex items-center gap-2">
                                     <Heart className="w-5 h-5 text-rose-600" />
-                                    Record New Donation
+                                    نیا عطیہ ریکارڈ کریں / Record New Donation
                                 </h2>
                                 <button onClick={() => setShowAddModal(false)} className="text-gray-400 hover:text-gray-600">
                                     <XCircle className="w-6 h-6" />
@@ -333,45 +333,45 @@ export default function DonationsPage() {
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donor Name *</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donor Name * / عطیہ دہندہ کا نام</label>
                                         <input
                                             type="text"
                                             required
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             value={formData.donorName}
                                             onChange={(e) => setFormData({ ...formData, donorName: e.target.value })}
-                                            placeholder="Full name or organization name"
+                                            placeholder="پورا نام یا ادارے کا نام / Full name or organization name"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donor Type</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donor Type / عطیہ دہندہ کی قسم</label>
                                         <select
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             value={formData.donorType}
                                             onChange={(e) => setFormData({ ...formData, donorType: e.target.value })}
                                         >
-                                            <option value="INDIVIDUAL">Individual</option>
-                                            <option value="ORGANIZATION">Organization</option>
+                                            <option value="INDIVIDUAL">Individual / انفرادی</option>
+                                            <option value="ORGANIZATION">Organization / ادارہ</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donation Type</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donation Type / عطیہ کی قسم</label>
                                         <select
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             value={formData.donationType || ""}
                                             onChange={(e) => setFormData({ ...formData, donationType: e.target.value })}
                                         >
-                                            <option value="">Select Type</option>
-                                            <option value="ZAKAT">Zakat</option>
-                                            <option value="SADAQAH">Sadaqah</option>
-                                            <option value="SADAQAH_JARIYAH">Sadaqah Jariyah</option>
-                                            <option value="ZAKAT_AL_FITR">Zakat al-Fitr</option>
-                                            <option value="KAFFARAH">Kaffarah</option>
-                                            <option value="FIDYA">Fidya</option>
+                                            <option value="">Select Type / قسم منتخب کریں</option>
+                                            <option value="ZAKAT">Zakat / زکوٰۃ</option>
+                                            <option value="SADAQAH">Sadaqah / صدقہ</option>
+                                            <option value="SADAQAH_JARIYAH">Sadaqah Jariyah / صدقہ جاریہ</option>
+                                            <option value="ZAKAT_AL_FITR">Zakat al-Fitr / زکوٰۃ الفطر</option>
+                                            <option value="KAFFARAH">Kaffarah / کفارہ</option>
+                                            <option value="FIDYA">Fidya / فدیہ</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Amount (₹) *</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Amount (₹) * / رقم</label>
                                         <input
                                             type="number"
                                             required
@@ -383,7 +383,7 @@ export default function DonationsPage() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Date / تاریخ</label>
                                         <input
                                             type="date"
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
@@ -392,20 +392,20 @@ export default function DonationsPage() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Payment Method</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Payment Method / ادائیگی کا طریقہ</label>
                                         <select
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             value={formData.method}
                                             onChange={(e) => setFormData({ ...formData, method: e.target.value })}
                                         >
-                                            <option value="CASH">Cash</option>
-                                            <option value="CHEQUE">Cheque</option>
-                                            <option value="BANK_TRANSFER">Bank Transfer</option>
-                                            <option value="ONLINE">Online</option>
+                                            <option value="CASH">Cash / نقد</option>
+                                            <option value="CHEQUE">Cheque / چیک</option>
+                                            <option value="BANK_TRANSFER">Bank Transfer / بینک ٹرانسفر</option>
+                                            <option value="ONLINE">Online / آن لائن</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Phone / فون</label>
                                         <input
                                             type="text"
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
@@ -415,7 +415,7 @@ export default function DonationsPage() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Email / ای میل</label>
                                         <input
                                             type="email"
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
@@ -425,32 +425,32 @@ export default function DonationsPage() {
                                         />
                                     </div>
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Address / پتہ</label>
                                         <textarea
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             rows={2}
                                             value={formData.address}
                                             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                                            placeholder="Donor address (optional)"
+                                            placeholder="پتہ (اختیاری) / Donor address (optional)"
                                         />
                                     </div>
                                     <div className="col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Message / Note</label>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Message / Note / پیغام / نوٹ</label>
                                         <textarea
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             rows={2}
                                             value={formData.message}
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                            placeholder="Purpose of donation or any note (optional)"
+                                            placeholder="عطیہ کا مقصد یا کوئی نوٹ (اختیاری) / Purpose of donation or any note (optional)"
                                         />
                                     </div>
                                 </div>
                                 <div className="pt-4 flex justify-end gap-3 border-t border-gray-100">
                                     <Button type="button" variant="outline" onClick={() => setShowAddModal(false)}>
-                                        Cancel
+                                        Cancel / منسوخ
                                     </Button>
                                     <Button type="submit" className="bg-rose-600 hover:bg-rose-700 text-white" disabled={isSubmitting}>
-                                        {isSubmitting ? "Recording..." : "Record Donation"}
+                                        {isSubmitting ? "Recording..." : "Record Donation / عطیہ ریکارڈ کریں"}
                                     </Button>
                                 </div>
                             </form>
