@@ -330,6 +330,7 @@ model Donation {
   id           String   @id @default(uuid())
   donorName    String
   donorType    String   @default("INDIVIDUAL") // INDIVIDUAL, ORGANIZATION
+  donationType String?  // ZAKAT, SADAQAH, SADAQAH_JARIYAH, ZAKAT_AL_FITR, KAFFARAH, FIDYA
   amount       Float
   date         DateTime @default(now())
   method       String   @default("CASH") // CASH, CHEQUE, BANK_TRANSFER, ONLINE

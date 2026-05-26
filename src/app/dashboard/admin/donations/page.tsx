@@ -18,6 +18,7 @@ export default function DonationsPage() {
     const [formData, setFormData] = useState({
         donorName: "",
         donorType: "INDIVIDUAL",
+        donationType: "ZAKAT",
         amount: 0,
         date: format(new Date(), "yyyy-MM-dd"),
         method: "CASH",
@@ -89,6 +90,7 @@ export default function DonationsPage() {
         setFormData({
             donorName: "",
             donorType: "INDIVIDUAL",
+            donationType: "ZAKAT",
             amount: 0,
             date: format(new Date(), "yyyy-MM-dd"),
             method: "CASH",
@@ -218,6 +220,7 @@ export default function DonationsPage() {
                                 <tr>
                                     <th className="px-6 py-4 font-semibold">Receipt No</th>
                                     <th className="px-6 py-4 font-semibold">Donor</th>
+                                    <th className="px-6 py-4 font-semibold">Type</th>
                                     <th className="px-6 py-4 font-semibold">Amount</th>
                                     <th className="px-6 py-4 font-semibold">Date</th>
                                     <th className="px-6 py-4 font-semibold">Method</th>
@@ -247,6 +250,15 @@ export default function DonationsPage() {
                                                     )}
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {donation.donationType ? (
+                                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                                                    {donation.donationType.replace(/_/g, " ")}
+                                                </span>
+                                            ) : (
+                                                <span className="text-xs text-gray-400">—</span>
+                                            )}
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className="font-bold text-gray-900">₹{donation.amount.toLocaleString("en-IN", { minimumFractionDigits: 2 })}</span>
@@ -289,7 +301,7 @@ export default function DonationsPage() {
                                 ))}
                                 {filteredDonations.length === 0 && (
                                     <tr>
-                                        <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
+                                        <td colSpan={8} className="px-6 py-12 text-center text-gray-500">
                                             <Heart className="mx-auto h-8 w-8 text-gray-300 mb-3" />
                                             <p className="font-medium text-gray-900">No donation records found</p>
                                             <p className="text-sm mt-1">
@@ -340,6 +352,22 @@ export default function DonationsPage() {
                                         >
                                             <option value="INDIVIDUAL">Individual</option>
                                             <option value="ORGANIZATION">Organization</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Donation Type</label>
+                                        <select
+                                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
+                                            value={formData.donationType || ""}
+                                            onChange={(e) => setFormData({ ...formData, donationType: e.target.value })}
+                                        >
+                                            <option value="">Select Type</option>
+                                            <option value="ZAKAT">Zakat</option>
+                                            <option value="SADAQAH">Sadaqah</option>
+                                            <option value="SADAQAH_JARIYAH">Sadaqah Jariyah</option>
+                                            <option value="ZAKAT_AL_FITR">Zakat al-Fitr</option>
+                                            <option value="KAFFARAH">Kaffarah</option>
+                                            <option value="FIDYA">Fidya</option>
                                         </select>
                                     </div>
                                     <div>
@@ -450,7 +478,7 @@ export default function DonationsPage() {
                             <div className="text-right">
                                 <p className="text-sm text-gray-500 uppercase tracking-wide mb-1">Donor Details</p>
                                 <p className="font-bold text-lg">{printReceipt.donorName}</p>
-                                <p className="text-gray-600">{printReceipt.donorType === "ORGANIZATION" ? "Organization" : "Individual"}</p>
+                                <p className="text-gray-600">{printReceipt.donorType === "ORGANIZATION" ? "Organization" : "Individual"}{printReceipt.donationType ? ` · ${printReceipt.donationType.replace(/_/g, " ")}` : ""}</p>
                                 {printReceipt.phone && <p className="text-gray-600">Phone: {printReceipt.phone}</p>}
                                 {printReceipt.email && <p className="text-gray-600">Email: {printReceipt.email}</p>}
                                 {printReceipt.address && <p className="text-gray-600 text-sm mt-1">{printReceipt.address}</p>}
@@ -467,7 +495,7 @@ export default function DonationsPage() {
                             <tbody>
                                 <tr className="border-b border-gray-200">
                                     <td className="py-4">
-                                        <p className="font-medium">Donation</p>
+                                        <p className="font-medium">Donation{printReceipt.donationType ? ` (${printReceipt.donationType.replace(/_/g, " ")})` : ""}</p>
                                         <p className="text-sm text-gray-500">Payment Method: {printReceipt.method.replace("_", " ")}</p>
                                         {printReceipt.message && (
                                             <p className="text-sm text-gray-500 mt-1">Note: {printReceipt.message}</p>

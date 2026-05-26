@@ -41,6 +41,7 @@ export async function GET(request: Request) {
 const createDonationSchema = z.object({
     donorName: z.string().min(1, "Donor name is required"),
     donorType: z.enum(["INDIVIDUAL", "ORGANIZATION"]).default("INDIVIDUAL"),
+    donationType: z.enum(["ZAKAT", "SADAQAH", "SADAQAH_JARIYAH", "ZAKAT_AL_FITR", "KAFFARAH", "FIDYA"]).optional().nullable(),
     amount: z.number().positive("Amount must be positive"),
     date: z.string().optional(),
     method: z.enum(["CASH", "CHEQUE", "BANK_TRANSFER", "ONLINE"]).default("CASH"),
@@ -70,6 +71,7 @@ export async function POST(request: Request) {
             data: {
                 donorName: parsed.donorName,
                 donorType: parsed.donorType,
+                donationType: parsed.donationType || null,
                 amount: parsed.amount,
                 date: parsed.date ? new Date(parsed.date) : new Date(),
                 method: parsed.method,
