@@ -35,6 +35,9 @@ export default async function DashboardRedirect() {
         case "PARENT":
             redirect("/dashboard/parent");
         case "ACCOUNTANT":
+        case "HAFIZ":
+        case "COOK":
+        case "KHADIM":
             redirect("/dashboard/accountant");
         default:
             redirect("/login");

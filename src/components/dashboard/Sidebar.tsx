@@ -51,6 +51,18 @@ const roleNavGroups: Record<string, { title: string; href: string; icon: React.R
         { title: "Fee Collection", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
         { title: "Invoices", href: "/dashboard/accountant/invoices", icon: <BookOpen className="w-5 h-5" />, feature: "fees" },
         { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+    ],
+    HAFIZ: [
+        { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+    ],
+    COOK: [
+        { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+    ],
+    KHADIM: [
+        { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
     ]
 };
 

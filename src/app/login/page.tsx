@@ -34,7 +34,19 @@ export default function LoginPage() {
             }
 
             const { user } = await res.json();
-            const dashboardPath = user.role === "SUPER_ADMIN" ? "admin" : user.role.toLowerCase();
+            // Map roles to their dashboard base paths
+            const roleDashboardMap: Record<string, string> = {
+                SUPER_ADMIN: "admin",
+                ADMIN: "admin",
+                TEACHER: "teacher",
+                STUDENT: "student",
+                PARENT: "parent",
+                ACCOUNTANT: "accountant",
+                HAFIZ: "accountant",
+                COOK: "accountant",
+                KHADIM: "accountant",
+            };
+            const dashboardPath = roleDashboardMap[user.role] || user.role.toLowerCase();
             router.push(`/dashboard/${dashboardPath}`);
         } catch (err: any) {
             setError(err.message);

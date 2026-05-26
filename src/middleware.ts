@@ -13,7 +13,7 @@ const rolePaths: Record<string, string[]> = {
     "/dashboard/teacher": ["SUPER_ADMIN", "ADMIN", "TEACHER"],
     "/dashboard/student": ["SUPER_ADMIN", "ADMIN", "STUDENT", "PARENT"],
     "/dashboard/parent": ["SUPER_ADMIN", "ADMIN", "PARENT"],
-    "/dashboard/accountant": ["SUPER_ADMIN", "ADMIN", "ACCOUNTANT"],
+    "/dashboard/accountant": ["SUPER_ADMIN", "ADMIN", "ACCOUNTANT", "HAFIZ", "COOK", "KHADIM"],
 };
 
 // We dynamically import the DB to avoid bundling issues in edge runtime
