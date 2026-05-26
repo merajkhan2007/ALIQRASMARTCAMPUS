@@ -302,6 +302,18 @@ enum Role {
   HAFIZ
 }
 
+// Feature-level permission model: Super Admin controls which features each role can access
+model RolePermission {
+  id        String   @id @default(uuid())
+  role      Role
+  feature   String   // e.g. "users", "students", "teachers", "salary", "fees", "attendance", etc.
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([role, feature])
+}
+
 model StaffSalary {
   id            String    @id @default(uuid())
   amount        Float

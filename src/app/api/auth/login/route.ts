@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import { signToken } from "@/lib/jwt";
-import { cookies } from "next/headers";
+import { DEFAULT_ROLE_PERMISSIONS, isSuperAdmin } from "@/lib/permissions";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -47,16 +47,39 @@ export async function POST(req: Request) {
             );
         }
 
+        // Determine allowed features for the user's role
+        let features: string[] = [];
+
+        if (isSuperAdmin(user.role)) {
+            // SUPER_ADMIN always gets all features
+            features = ["__ALL__"];
+        } else {
+            // Try to fetch custom permissions from the DB
+            const dbPermissions = await db.rolePermission.findMany({
+                where: { role: user.role, enabled: true },
+                select: { feature: true },
+            });
+
+            if (dbPermissions.length > 0) {
+                features = dbPermissions.map(p => p.feature);
+            } else {
+                // Fall back to defaults if no DB entries exist yet
+                features = DEFAULT_ROLE_PERMISSIONS[user.role] || [];
+            }
+        }
+
         // Generate JWT
         const tokenPayload = {
             id: user.id,
             email: user.email,
             role: user.role,
             name: user.name,
+            features, // array of enabled feature keys
         };
         const token = signToken(tokenPayload, "7d");
 
         // Set cookie
+        const { cookies } = await import("next/headers");
         const cookieStore = await cookies();
         cookieStore.set({
             name: "auth-token",
@@ -76,6 +99,7 @@ export async function POST(req: Request) {
                     name: user.name,
                     email: user.email,
                     role: user.role,
+                    features,
                 },
             },
             { status: 200 }

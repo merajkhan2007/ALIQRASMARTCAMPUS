@@ -7,58 +7,73 @@ import {
     CreditCard, Calendar, Book, Bell, Settings, Banknote
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { isSuperAdmin } from "@/lib/permissions";
 
-// Mapping roles to their distinct routes
-const roleNavGroups: Record<string, { title: string; href: string; icon: React.ReactNode }[]> = {
+// Mapping roles to their distinct routes (with feature keys for filtering)
+const roleNavGroups: Record<string, { title: string; href: string; icon: React.ReactNode; feature?: string }[]> = {
     SUPER_ADMIN: [
-        { title: "Dashboard", href: "/dashboard/admin", icon: <Home className="w-5 h-5" /> },
-        { title: "Admissions", href: "/dashboard/admin/admissions", icon: <UserCheck className="w-5 h-5" /> },
-        { title: "Students", href: "/dashboard/admin/students", icon: <GraduationCap className="w-5 h-5" /> },
-        { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" /> },
-        { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" /> },
-        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <UserCheck className="w-5 h-5" /> },
-        { title: "Exams", href: "/dashboard/admin/exams", icon: <Calendar className="w-5 h-5" /> },
-        { title: "Fees", href: "/dashboard/admin/fees", icon: <CreditCard className="w-5 h-5" /> },
-        { title: "Library", href: "/dashboard/admin/library", icon: <Book className="w-5 h-5" /> },
-        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" /> },
+        { title: "Dashboard", href: "/dashboard/admin", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "Admissions", href: "/dashboard/admin/admissions", icon: <UserCheck className="w-5 h-5" />, feature: "admissions" },
+        { title: "Students", href: "/dashboard/admin/students", icon: <GraduationCap className="w-5 h-5" />, feature: "students" },
+        { title: "Teachers", href: "/dashboard/admin/teachers", icon: <Users className="w-5 h-5" />, feature: "teachers" },
+        { title: "Classes", href: "/dashboard/admin/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
+        { title: "Attendance", href: "/dashboard/admin/attendance", icon: <UserCheck className="w-5 h-5" />, feature: "attendance" },
+        { title: "Exams", href: "/dashboard/admin/exams", icon: <Calendar className="w-5 h-5" />, feature: "exams" },
+        { title: "Fees", href: "/dashboard/admin/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Library", href: "/dashboard/admin/library", icon: <Book className="w-5 h-5" />, feature: "library" },
+        { title: "Notices", href: "/dashboard/admin/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
     ],
     TEACHER: [
-        { title: "Dashboard", href: "/dashboard/teacher", icon: <Home className="w-5 h-5" /> },
-        { title: "My Classes", href: "/dashboard/teacher/classes", icon: <BookOpen className="w-5 h-5" /> },
-        { title: "Mark Attendance", href: "/dashboard/teacher/attendance", icon: <UserCheck className="w-5 h-5" /> },
-        { title: "Exams & Results", href: "/dashboard/teacher/exams", icon: <Calendar className="w-5 h-5" /> },
-        { title: "My Salary", href: "/dashboard/teacher/salary", icon: <Banknote className="w-5 h-5" /> },
-        { title: "Notices", href: "/dashboard/teacher/notices", icon: <Bell className="w-5 h-5" /> },
+        { title: "Dashboard", href: "/dashboard/teacher", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "My Classes", href: "/dashboard/teacher/classes", icon: <BookOpen className="w-5 h-5" />, feature: "classes" },
+        { title: "Mark Attendance", href: "/dashboard/teacher/attendance", icon: <UserCheck className="w-5 h-5" />, feature: "attendance" },
+        { title: "Exams & Results", href: "/dashboard/teacher/exams", icon: <Calendar className="w-5 h-5" />, feature: "exams" },
+        { title: "My Salary", href: "/dashboard/teacher/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
+        { title: "Notices", href: "/dashboard/teacher/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
     ],
     STUDENT: [
-        { title: "Dashboard", href: "/dashboard/student", icon: <Home className="w-5 h-5" /> },
-        { title: "My Profile", href: "/dashboard/student/profile", icon: <Users className="w-5 h-5" /> },
-        { title: "Attendance", href: "/dashboard/student/attendance", icon: <UserCheck className="w-5 h-5" /> },
-        { title: "Exams & Results", href: "/dashboard/student/results", icon: <Calendar className="w-5 h-5" /> },
-        { title: "Fees", href: "/dashboard/student/fees", icon: <CreditCard className="w-5 h-5" /> },
-        { title: "Islamic Progress", href: "/dashboard/student/islamic", icon: <Book className="w-5 h-5" /> },
-        { title: "Notices", href: "/dashboard/student/notices", icon: <Bell className="w-5 h-5" /> },
+        { title: "Dashboard", href: "/dashboard/student", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "My Profile", href: "/dashboard/student/profile", icon: <Users className="w-5 h-5" />, feature: "overview" },
+        { title: "Attendance", href: "/dashboard/student/attendance", icon: <UserCheck className="w-5 h-5" />, feature: "attendance" },
+        { title: "Exams & Results", href: "/dashboard/student/results", icon: <Calendar className="w-5 h-5" />, feature: "exams" },
+        { title: "Fees", href: "/dashboard/student/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Islamic Progress", href: "/dashboard/student/islamic", icon: <Book className="w-5 h-5" />, feature: "overview" },
+        { title: "Notices", href: "/dashboard/student/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
     ],
     PARENT: [
-        { title: "Dashboard", href: "/dashboard/parent", icon: <Home className="w-5 h-5" /> },
-        { title: "My Children", href: "/dashboard/parent/children", icon: <Users className="w-5 h-5" /> },
-        { title: "Fees & Payments", href: "/dashboard/parent/fees", icon: <CreditCard className="w-5 h-5" /> },
-        { title: "Notices", href: "/dashboard/parent/notices", icon: <Bell className="w-5 h-5" /> },
+        { title: "Dashboard", href: "/dashboard/parent", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "My Children", href: "/dashboard/parent/children", icon: <Users className="w-5 h-5" />, feature: "overview" },
+        { title: "Fees & Payments", href: "/dashboard/parent/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Notices", href: "/dashboard/parent/notices", icon: <Bell className="w-5 h-5" />, feature: "notices" },
     ],
     ACCOUNTANT: [
-        { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" /> },
-        { title: "Fee Collection", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" /> },
-        { title: "Invoices", href: "/dashboard/accountant/invoices", icon: <BookOpen className="w-5 h-5" /> },
-        { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" /> },
+        { title: "Dashboard", href: "/dashboard/accountant", icon: <Home className="w-5 h-5" />, feature: "overview" },
+        { title: "Fee Collection", href: "/dashboard/accountant/fees", icon: <CreditCard className="w-5 h-5" />, feature: "fees" },
+        { title: "Invoices", href: "/dashboard/accountant/invoices", icon: <BookOpen className="w-5 h-5" />, feature: "fees" },
+        { title: "My Salary", href: "/dashboard/accountant/salary", icon: <Banknote className="w-5 h-5" />, feature: "salary" },
     ]
 };
 
 // Map ADMIN to SUPER_ADMIN to reuse nav links
 roleNavGroups["ADMIN"] = roleNavGroups["SUPER_ADMIN"];
 
-export function Sidebar({ userRole }: { userRole: string }) {
+interface SidebarProps {
+    userRole: string;
+    allowedFeatures?: string[];
+}
+
+export function Sidebar({ userRole, allowedFeatures = [] }: SidebarProps) {
     const pathname = usePathname();
-    const navItems = roleNavGroups[userRole] || [];
+    const allItems = roleNavGroups[userRole] || [];
+    const superAdmin = isSuperAdmin(userRole);
+
+    // Filter nav items by allowed features
+    const filteredItems = allItems.filter(item => {
+        if (superAdmin) return true;
+        if (allowedFeatures.length === 0) return true; // no restrictions loaded yet
+        if (!item.feature) return true; // items without a feature tag are always shown
+        return allowedFeatures.includes(item.feature);
+    });
 
     return (
         <div className="flex shrink-0 flex-col w-64 bg-emerald-900 text-emerald-50 h-screen sticky top-0 overflow-y-auto">
@@ -66,7 +81,7 @@ export function Sidebar({ userRole }: { userRole: string }) {
                 <h2 className="text-lg font-bold tracking-tight text-white line-clamp-1">AL-IQRA MODERN MADRASA</h2>
             </div>
             <nav className="flex-1 space-y-1 px-3 py-4">
-                {navItems.map((item) => {
+                {filteredItems.map((item) => {
                     const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
                     return (
                         <Link
@@ -86,6 +101,11 @@ export function Sidebar({ userRole }: { userRole: string }) {
                         </Link>
                     );
                 })}
+                {filteredItems.length === 0 && (
+                    <p className="text-emerald-300/50 text-sm text-center py-8">
+                        No features available for your role.
+                    </p>
+                )}
             </nav>
             <div className="p-4 border-t border-emerald-800 space-y-2">
                 <button className="flex w-full items-center px-3 py-2 text-sm font-medium text-emerald-100 rounded-md hover:bg-emerald-800 hover:text-white group">
