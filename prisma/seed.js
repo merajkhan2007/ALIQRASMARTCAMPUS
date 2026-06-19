@@ -8,7 +8,7 @@ async function main() {
 
     // Check if admin already exists
     const existingAdmin = await prisma.user.findUnique({
-        where: { email: "admin@aliqra.edu" },
+        where: { email: "admin@aliqramodernmadrasa.com" },
     });
 
     if (existingAdmin) {
@@ -21,7 +21,7 @@ async function main() {
     const admin = await prisma.user.create({
         data: {
             name: "Super Admin",
-            email: "admin@aliqra.edu",
+            email: "admin@aliqramodernmadrasa.com",
             password: hashedPassword,
             role: "SUPER_ADMIN",
         },
