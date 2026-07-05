@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin, MapPin } from "lucide-react";
+import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin, UserPlus } from "lucide-react";
 
 export function TopBar() {
     return (
@@ -55,10 +55,10 @@ export function TopBar() {
                         <div className="w-px h-3 bg-white/20" />
                         <Link
                             href="/admission"
-                            className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-brand-gold text-brand-green text-[11px] font-bold hover:bg-brand-gold-light hover:scale-105 transition-all duration-300 shadow-sm shadow-brand-gold/20"
+                            className="flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-brand-gold text-brand-green text-[11px] font-bold hover:bg-brand-gold-light hover:scale-105 transition-all duration-300 shadow-sm shadow-brand-gold/20"
                         >
-                            <MapPin className="w-2.5 h-2.5" />
-                            Apply Now
+                            <UserPlus className="w-3 h-3" />
+                            New Admission
                         </Link>
                     </div>
                 </div>
@@ -76,7 +76,8 @@ export function TopBar() {
                     href="/admission"
                     className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-brand-gold text-brand-green text-[10px] font-bold hover:bg-brand-gold-light transition-all"
                 >
-                    Apply Now
+                    <UserPlus className="w-2.5 h-2.5" />
+                    New Admission
                 </Link>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { ArrowRight, Heart, HandHeart } from "lucide-react";
+import { Heart, HandHeart, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Mosque, Lantern } from "@/components/sections/IslamicIcons";
@@ -28,8 +28,8 @@ export function CTARibbon() {
                             <div className="mt-4">
                                 <Link href="/admission">
                                     <Button size="sm" className="bg-brand-gold hover:bg-brand-gold-light text-brand-dark font-bold h-9 px-5 text-xs rounded-full shadow-md hover:shadow-lg transition-all duration-300 group">
-                                        Apply for Admission
-                                        <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                                        New Admission
+                                        <UserPlus className="ml-1.5 w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
                                     </Button>
                                 </Link>
                             </div>

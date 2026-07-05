@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Calendar, User, ArrowLeft, ChevronRight } from "lucide-react";
+import { Calendar, User, ArrowLeft, ChevronRight, UserPlus } from "lucide-react";
 import { db } from "@/lib/db";
 import "../blog-content.css";
 
@@ -322,9 +322,10 @@ export default async function BlogPostPage({
                                 </p>
                                 <Link
                                     href="/admission"
-                                    className="inline-block bg-brand-gold text-brand-dark font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-brand-gold/90 transition-colors"
+                                    className="inline-flex items-center justify-center gap-1.5 bg-brand-gold text-brand-dark font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-brand-gold/90 transition-colors group"
                                 >
-                                    Apply Now
+                                    New Admission
+                                    <UserPlus className="w-4 h-4 group-hover:scale-110 transition-transform" />
                                 </Link>
                             </div>
                         </aside>

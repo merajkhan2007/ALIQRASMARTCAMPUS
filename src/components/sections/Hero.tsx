@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ImageSlider } from "@/components/ui/image-slider";
 import { CrescentStar } from "@/components/sections/IslamicIcons";
@@ -43,8 +43,8 @@ export function Hero() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
                     <Link href="/admission">
                         <Button size="lg" className="h-12 sm:h-14 px-6 sm:px-10 text-base sm:text-lg font-bold bg-brand-gold hover:bg-brand-gold-light text-brand-dark rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group">
-                            Apply for Admission
-                            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            New Admission
+                            <UserPlus className="ml-2 w-5 h-5 group-hover:scale-110 transition-transform" />
                         </Button>
                     </Link>
                 </div>

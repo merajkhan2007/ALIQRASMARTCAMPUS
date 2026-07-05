@@ -199,7 +199,7 @@ export default function ContactPage() {
                                 <h3 className="text-xl font-bold mb-4">Quick Links</h3>
                                 <ul className="space-y-3">
                                     {[
-                                        { name: "Apply for Admission", href: "/admission" },
+                                        { name: "New Admission", href: "/admission" },
                                         { name: "Our Courses", href: "/#courses" },
                                         { name: "Our Services", href: "/#services" },
                                         { name: "Institute Gallery", href: "/#gallery" },

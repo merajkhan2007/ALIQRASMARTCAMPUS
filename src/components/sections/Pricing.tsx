@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -91,13 +91,14 @@ export function Pricing() {
 
                             <Link href="/admission">
                                 <Button
-                                    className={`w-full h-12 rounded-xl font-bold transition-all ${
+                                    className={`w-full h-12 rounded-xl font-bold transition-all flex items-center justify-center gap-2 group ${
                                         plan.highlighted
                                             ? 'bg-brand-green hover:bg-brand-green-light text-white'
                                             : 'bg-brand-dark hover:bg-gray-800 text-white'
                                     }`}
                                 >
-                                    Apply Now
+                                    New Admission
+                                    <UserPlus className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                 </Button>
                             </Link>
                         </div>

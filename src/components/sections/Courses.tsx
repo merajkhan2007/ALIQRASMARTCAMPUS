@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, GraduationCap, Monitor, Languages, Calculator, Globe, Heart, Users, CheckCircle2 } from "lucide-react";
+import { BookOpen, GraduationCap, Monitor, Languages, Calculator, Globe, Heart, Users, CheckCircle2, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Courses() {
@@ -41,8 +41,9 @@ export function Courses() {
                             </p>
                             <div className="flex flex-wrap gap-4">
                                 <Link href="/admission">
-                                    <Button size="lg" className="bg-brand-green hover:bg-brand-green/90 text-white font-bold h-12 px-8 rounded-xl shadow-md hover:shadow-lg transition-all">
-                                        Apply for Admission
+                                    <Button size="lg" className="bg-brand-green hover:bg-brand-green/90 text-white font-bold h-12 px-8 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center gap-2 group">
+                                        New Admission
+                                        <UserPlus className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                     </Button>
                                 </Link>
                                 <Link href="/contact">

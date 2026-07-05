@@ -1,4 +1,4 @@
-import { CheckCircle2, BookOpen, GraduationCap, Heart, Home, Users, Monitor, Languages, Calculator, Globe } from "lucide-react";
+import { CheckCircle2, BookOpen, GraduationCap, Heart, Home, Users, Monitor, Languages, Calculator, Globe, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -58,8 +58,9 @@ export function About() {
 
                             <div className="flex flex-wrap gap-4">
                                 <Link href="/admission">
-                                    <Button className="bg-brand-green hover:bg-brand-green-light text-white font-bold h-12 px-8 rounded-full shadow-md hover:shadow-lg transition-all">
-                                        Apply Now
+                                    <Button className="bg-brand-green hover:bg-brand-green-light text-white font-bold h-12 px-8 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 group">
+                                        New Admission
+                                        <UserPlus className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                     </Button>
                                 </Link>
                                 <Link href="/contact">
