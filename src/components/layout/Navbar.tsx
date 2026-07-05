@@ -61,19 +61,8 @@ export function Navbar({ isLoggedIn = false }: { isLoggedIn?: boolean }) {
                                     className="relative object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
-                            <div className="flex flex-col justify-center -space-y-1 sm:-space-y-1.5 select-none">
-                                <span
-                                    className="text-sm sm:text-base lg:text-[18px] font-bold text-brand-green/80 whitespace-nowrap group-hover:text-brand-green transition-colors duration-300"
-                                    style={{ 
-                                        fontFamily: 'var(--font-urdu)', 
-                                        direction: 'rtl',
-                                        lineHeight: '1.7',
-                                        paddingBottom: '2px'
-                                    }}
-                                >
-                                    الاقرأ ماڈرن مدرسہ
-                                </span>
-                                <span className="text-[9px] sm:text-[10px] lg:text-[11px] font-black text-brand-green leading-none uppercase tracking-[0.12em] whitespace-nowrap">
+                            <div className="select-none">
+                                <span className="text-xs sm:text-sm lg:text-base font-black text-brand-green leading-tight uppercase tracking-[0.12em] whitespace-nowrap">
                                     AL-IQRA <span className="text-brand-gold">MODERN MADRASA</span>
                                 </span>
                             </div>
