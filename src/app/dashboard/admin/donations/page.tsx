@@ -340,7 +340,7 @@ export default function DonationsPage() {
                                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-500"
                                             value={formData.donorName}
                                             onChange={(e) => setFormData({ ...formData, donorName: e.target.value })}
-                                            placeholder="<span className='urdu'>پورا نام یا ادارے کا نام</span> / Full name or organization name"
+                                            placeholder="پورا نام یا ادارے کا نام / Full name or organization name"
                                         />
                                     </div>
                                     <div>
@@ -431,7 +431,7 @@ export default function DonationsPage() {
                                             rows={2}
                                             value={formData.address}
                                             onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                                            placeholder="<span className='urdu'>پتہ (اختیاری)</span> / Donor address (optional)"
+                                            placeholder="پتہ (اختیاری) / Donor address (optional)"
                                         />
                                     </div>
                                     <div className="col-span-2">
@@ -441,7 +441,7 @@ export default function DonationsPage() {
                                             rows={2}
                                             value={formData.message}
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                            placeholder="<span className='urdu'>عطیہ کا مقصد یا کوئی نوٹ (اختیاری)</span> / Purpose of donation or any note (optional)"
+                                            placeholder="عطیہ کا مقصد یا کوئی نوٹ (اختیاری) / Purpose of donation or any note (optional)"
                                         />
                                     </div>
                                 </div>
